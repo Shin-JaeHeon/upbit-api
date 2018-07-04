@@ -15,7 +15,7 @@ function ticker(market) {
             const data = [];
             body = JSON.parse(body.toString());
             body.forEach(v => {
-                const market = new Market_1.default();
+                const market = new Market_1.default(v['market'].split('-')[0], v['market'].split('-')[1]);
                 market.tradeTime = new Date(v['trade_timestamp']);
                 market.price = v['trade_price'];
                 market.open = v['opening_price'];

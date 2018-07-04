@@ -1,4 +1,43 @@
 export default class {
+
+    private readonly _market: string;
+    private readonly _coin: string;
+    private _tradeTime: Date;
+    private _price: number;
+    private _open: number;
+    private _high: number;
+    private _low: number;
+    private _prevClose: number;
+    private _change: string;
+    private _changePrice: number;
+    private _changeRate: number;
+    private _signedChangePrice: number;
+    private _signedChangeRate: number;
+    private _tradeVolume: number;
+    private _accTradePrice: number;
+    private _accTradePrice24: number;
+    private _accTradeVolume: number;
+    private _accTradeVolume24: number;
+    private _high52wPrice: number;
+    private _high52wDate: Date;
+    private _low52wPrice: number;
+    private _low52wDate: Date;
+    private _lastUpdate: Date;
+
+    constructor(market, coin) {
+        this._market = market;
+        this._coin = coin;
+
+    }
+
+    get coin(): string {
+        return this._coin;
+    }
+
+    get market(): string {
+        return this._market;
+    }
+
     get tradeTime(): Date {
         return this._tradeTime;
     }
@@ -166,27 +205,4 @@ export default class {
     set lastUpdate(value: Date) {
         this._lastUpdate = value;
     }
-
-    private _tradeTime: Date;
-    private _price: number;
-    private _open: number;
-    private _high: number;
-    private _low: number;
-    private _prevClose: number;
-    private _change: string;
-    private _changePrice: number;
-    private _changeRate: number;
-    private _signedChangePrice: number;
-    private _signedChangeRate: number;
-    private _tradeVolume: number;
-    private _accTradePrice: number;
-    private _accTradePrice24: number;
-    private _accTradeVolume: number;
-    private _accTradeVolume24: number;
-    private _high52wPrice: number;
-    private _high52wDate: Date;
-    private _low52wPrice: number;
-    private _low52wDate: Date;
-    private _lastUpdate: Date;
-
 }

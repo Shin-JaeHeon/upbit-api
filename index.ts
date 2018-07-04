@@ -14,7 +14,7 @@ function ticker(market: Array<string>): Promise<Array<Market>> {
             const data = [];
             body = JSON.parse(body.toString());
             body.forEach(v => {
-                const market = new Market();
+                const market = new Market(v['market'].split('-')[0], v['market'].split('-')[1]);
                 market.tradeTime = new Date(v['trade_timestamp']);
                 market.price = v['trade_price'];
                 market.open = v['opening_price'];
