@@ -5,10 +5,13 @@
 [![npm](https://img.shields.io/badge/Readme-English-lightgray.svg?style=flat-square)](https://github.com/Shin-JaeHeon/upbit-api/blob/master/README.md)
 [![npm](https://img.shields.io/badge/Readme-한국어-blue.svg?style=flat-square)](https://github.com/Shin-JaeHeon/upbit-api/blob/master/README-KR.md)
 [![npm](https://img.shields.io/badge/Readme-日本語-orange.svg?style=flat-square)](https://github.com/Shin-JaeHeon/upbit-api/blob/master/README-JP.md)
-upbit-api is an API that makes Upbit OpenAPI easy to use.
-This api will support the Restful API and Websocket API.
+upbit-api는 업비트의 Open API를 좀 더 쉽게 사용할 수 있도록 만든 node.js용 라이브러리입니다.
+
+타입스크립트로 작성되어 있으며, es2017로 컴파일 되어있습니다.
+
+RestfulAPI와 WebSocket API를 모두 지원하는 것이 목표입니다.
 
 ## ticker()
-Create new Market object arrays.
+마켓 오브젝트(KRW-BTC 같은 것을 일컫습니다.) 배열을 생성합니다.
 ## autoUpdate()
-Updates object **market** every specified **time** time.
+마켓 오브젝트를 일정 시간마다 업데이트 합니다.
