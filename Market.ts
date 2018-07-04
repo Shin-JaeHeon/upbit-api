@@ -47,11 +47,11 @@ export default class {
         this._prevClose = value;
     }
 
-    get change(): number {
+    get change(): string {
         return this._change;
     }
 
-    set change(value: number) {
+    set change(value: string) {
         this._change = value;
     }
 
@@ -173,7 +173,7 @@ export default class {
     private _high: number;
     private _low: number;
     private _prevClose: number;
-    private _change: number;
+    private _change: string;
     private _changePrice: number;
     private _changeRate: number;
     private _signedChangePrice: number;

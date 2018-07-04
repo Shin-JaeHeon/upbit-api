@@ -33,9 +33,10 @@ function ticker(market) {
                 market.accTradeVolume = v['acc_trade_volume'];
                 market.accTradeVolume24 = v['acc_trade_volume_24h'];
                 market.high52wPrice = v['highest_52_week_price'];
-                market.high52wDate = v['highest_52_week_date'];
+                market.high52wDate = new Date(v['highest_52_week_date']);
                 market.low52wPrice = v['lowest_52_week_price'];
-                market.low52wDate = v['lowest_52_week_date'];
+                market.low52wDate = new Date(v['lowest_52_week_date']);
+                market.lastUpdate = new Date();
                 data.push(market);
             });
             resolve(data);
