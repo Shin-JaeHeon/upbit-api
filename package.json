@@ -1,0 +1,18 @@
+{
+  "name": "coin-views-server",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": {
+    "name": "Shin-JaeHeon",
+    "email": "heoni0504@gmail.com",
+    "url": "http://shinjaeheon.tistory.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.83.0",
+    "ws": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.2"
+  }
+}
