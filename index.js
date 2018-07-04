@@ -9,6 +9,8 @@ function ticker(market) {
             qs: { markets: market.toString() }
         };
         request(options, (error, response, body) => {
+            if (error)
+                reject(error);
             const data = {};
             body.forEach(v => {
                 data[v.market] = {
