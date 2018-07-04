@@ -51,17 +51,15 @@ function ticker(market) {
 }
 /**
  * Updates object [market] every specified [time] time.
- * @param market An object to update
+ * @param market An object or an Array<Market> to update
  * @param time update interval(ms)
  * @param {(error) => any} errorHandler
  * @param {(market) => any} callback called when updated
  */
 function autoUpdate(market, time, errorHandler, callback) {
-    setInterval(() => {
+    const run = market => setInterval(() => {
         const options = {
-            method: 'GET',
-            url: 'https://api.upbit.com/v1/ticker',
-            qs: { markets: `${market.market}-${market.coin}` }
+            method: 'GET', url: 'https://api.upbit.com/v1/ticker', qs: { markets: `${market.market}-${market.coin}` }
         };
         request(options, (error, response, body) => {
             if (error)
@@ -94,5 +92,9 @@ function autoUpdate(market, time, errorHandler, callback) {
             }
         });
     }, time);
+    if (Array.isArray(market))
+        market.forEach(v => run(v));
+    else
+        run(market);
 }
 exports.default = { ticker, autoUpdate };
