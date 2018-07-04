@@ -2,6 +2,10 @@ import Market from "./Market";
 
 const request = require("request");
 
+/**
+ * Create new Market object arrays.
+ * @param market example: ['KRW-BTC', 'KRW-XRP']
+ */
 function ticker(market: Array<string>): Promise<Array<Market>> {
     return new Promise((resolve, reject) => {
         const options = {
@@ -46,7 +50,6 @@ function ticker(market: Array<string>): Promise<Array<Market>> {
 }
 
 /**
- *
  * Updates object [market] every specified [time] time.
  * @param market An object to update
  * @param time update interval(ms)

@@ -2,6 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Market_1 = require("./Market");
 const request = require("request");
+/**
+ * Create new Market object arrays.
+ * @param market example: ['KRW-BTC', 'KRW-XRP']
+ */
 function ticker(market) {
     return new Promise((resolve, reject) => {
         const options = {
@@ -46,7 +50,6 @@ function ticker(market) {
     });
 }
 /**
- *
  * Updates object [market] every specified [time] time.
  * @param market An object to update
  * @param time update interval(ms)
