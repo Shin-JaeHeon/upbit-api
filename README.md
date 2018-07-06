@@ -11,5 +11,5 @@ This api will support the Restful API and Websocket API.
 
 ## ticker()
 Create new Market object arrays.
-## autoUpdate(Market or Array<Market)
+## autoUpdate(Market or Array\<Market\>)
 Updates object **market** every specified **time** time.

@@ -10,7 +10,7 @@ upbit-api는 업비트의 Open API를 좀 더 쉽게 사용할 수 있도록 만
 
 타입스크립트로 작성되어 있으며, es2017로 컴파일 되어있습니다.
 
-RestfulAPI와 WebSocket API를 모두 지원하는 것이 목표입니다.
+Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 
 ## ticker()
 마켓 오브젝트(KRW-BTC 같은 것을 일컫습니다.) 배열을 생성합니다.
