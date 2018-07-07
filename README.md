@@ -9,7 +9,21 @@
 upbit-api is an API that makes Upbit OpenAPI easy to use.
 This api will support the Restful API and Websocket API.
 
-## ticker()
-Create new Market object arrays.
+## ticker(string or Array\<string\>)
+Create new **Market** object arrays.
+
 ## autoUpdate(Market or Array\<Market\>)
 Updates object **market** every specified **time** time.
+
+## OrderBook(string or Array\<string\>)
+Create new **OrderBook** object arrays.
+
+### OrderBook class
+* market : KRW, BTC, USDT ...
+* coin : BTC, ETH, ETC ...
+* lastUpdate : Date
+* askList, bidList : Array<**Order**>
+* totalAsk, totalBid : number
+
+### Order class
+* price, size : number

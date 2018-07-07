@@ -12,8 +12,21 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 
 目标是支持Restful API和WebSocket API。
 
-## ticker()
+## ticker(string or Array\<string\>)
 创建新的**Market**对象数组。
 
 ## autoUpdate(Market or Array\<Market\>)
 更新对象**Market**每个特定的**time(ms)**时间。
+
+## OrderBook(string or Array\<string\>)
+创建新的**OrderBook**对象数组。
+
+### OrderBook class
+* market : KRW, BTC, USDT ...
+* coin : BTC, ETH, ETC ...
+* lastUpdate : Date
+* askList, bidList : Array<**Order**>
+* totalAsk, totalBid : number
+
+### Order class
+* price, size : number

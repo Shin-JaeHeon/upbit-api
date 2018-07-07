@@ -1,11 +1,11 @@
 export default class {
 
-    private isAsk: boolean;
     private _price: number;
     private _size: number;
 
-    constructor(isAsk) {
-        this.isAsk = isAsk;
+    constructor(price, size) {
+        this._price = price;
+        this._size = size;
     }
 
     get price(): number {

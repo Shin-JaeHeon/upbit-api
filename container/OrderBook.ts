@@ -6,8 +6,8 @@ export default class {
     private _lastUpdate: Date;
     private _askList: Array<Order>;
     private _bidList: Array<Order>;
-    private _total_ask: number;
-    private _total_bid: number;
+    private _totalAsk: number;
+    private _totalBid: number;
 
     constructor(market, coin) {
         this._market = market;
@@ -38,19 +38,19 @@ export default class {
         this._bidList = value;
     }
 
-    get total_bid(): number {
-        return this._total_bid;
+    get totalBid(): number {
+        return this._totalBid;
     }
 
-    set total_bid(value: number) {
-        this._total_bid = value;
+    set totalBid(value: number) {
+        this._totalBid = value;
     }
 
-    get total_ask(): number {
-        return this._total_ask;
+    get totalAsk(): number {
+        return this._totalAsk;
     }
 
-    set total_ask(value: number) {
-        this._total_ask = value;
+    set totalAsk(value: number) {
+        this._totalAsk = value;
     }
 }

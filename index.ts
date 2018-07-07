@@ -1,4 +1,6 @@
-import Market from "./Market";
+import Market from "./container/Market";
+import OrderBook from "./container/OrderBook";
+import Order from "./container/Order";
 
 const request = require("request");
 
@@ -95,4 +97,33 @@ function autoUpdate(market: any, time: number, errorHandler: (error) => any, cal
 
 }
 
-export default {ticker, autoUpdate}
+/**
+ * Load the order book.
+ * @param market
+ */
+function orderBook(market: any): Promise<Array<OrderBook>> {
+    return new Promise((resolve, reject) => {
+        request({
+            method: 'GET',
+            url: 'https://api.upbit.com/v1/orderbook',
+            qs: {markets: market.toString()}
+        }, (error, response, body) => {
+            body = JSON.parse(body);
+            resolve(body.map(v => {
+                    const order = new OrderBook(v['market'].split('-')[0], v['market'].split('-')[1]);
+                    const ask = [];
+                    const bid = [];
+                    v['orderbook_units'].forEach(v => {
+                        ask.push(new Order(v['ask_price'], v['ask_size']));
+                        bid.push(new Order(v['bid_price'], v['bid_size']));
+                    });
+                    order.askList = ask;
+                    order.bidList = bid;
+                    return order;
+                }
+            ));
+        });
+    });
+}
+
+export default {ticker, autoUpdate, orderBook}

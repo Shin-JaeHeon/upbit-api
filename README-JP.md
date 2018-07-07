@@ -10,9 +10,23 @@ upbit-apiはUpbitのOpen APIをより容易に使用できるように作ったn
 
 タイプスクリプトで作成されており、es2017にコンパイルされています。
 
-Restful APIとWebSocket APIを支援するのが目標です。　ありがとうございます。
+Restful APIとWebSocket APIを支援するのが目標です。
 
-## ticker()
-マーケットオブジェクト(KRW-BTCのようなものを指します。)配列を生成します。
+## ticker(string または Array\<string\>)
+**Market**の(KRW-BTCのようなものを指します。)配列を生成します。
+
 ## autoUpdate(Market または Array<Market>)
-マーケットのオブジェクトを一定時間ごとにアップデートします。
+**Market**のオブジェクトを一定時間ごとにアップデートします。
+
+## OrderBook(string または Array\<string\>)
+**OrderBook**の配列を生成します。
+
+### OrderBook クラス
+* market : KRW, BTC, USDT ...
+* coin : BTC, ETH, ETC ...
+* lastUpdate : Date
+* askList, bidList : Array<**Order**>
+* totalAsk, totalBid : number
+
+### Order クラス
+* price, size : number

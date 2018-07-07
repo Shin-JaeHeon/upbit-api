@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Market_1 = require("./Market");
+const Market_1 = require("./container/Market");
+const OrderBook_1 = require("./container/OrderBook");
+const Order_1 = require("./container/Order");
 const request = require("request");
 /**
  * Create new Market object arrays.
@@ -97,4 +99,31 @@ function autoUpdate(market, time, errorHandler, callback) {
     else
         run(market);
 }
-exports.default = { ticker, autoUpdate };
+/**
+ * Load the order book.
+ * @param market
+ */
+function orderBook(market) {
+    return new Promise((resolve, reject) => {
+        request({
+            method: 'GET',
+            url: 'https://api.upbit.com/v1/orderbook',
+            qs: { markets: market.toString() }
+        }, (error, response, body) => {
+            body = JSON.parse(body);
+            resolve(body.map(v => {
+                const order = new OrderBook_1.default(v['market'].split('-')[0], v['market'].split('-')[1]);
+                const ask = [];
+                const bid = [];
+                v['orderbook_units'].forEach(v => {
+                    ask.push(new Order_1.default(v['ask_price'], v['ask_size']));
+                    bid.push(new Order_1.default(v['bid_price'], v['bid_size']));
+                });
+                order.askList = ask;
+                order.bidList = bid;
+                return order;
+            }));
+        });
+    });
+}
+exports.default = { ticker, autoUpdate, orderBook };
