@@ -14,14 +14,30 @@ It was created with Typescript and compiled into es2017.
 > ### Warning, incompatible with v0.2.0.
 > autoUpdate has been moved to autoMarketUpdate.
 
-## ticker(string or Array\<string\>)
+## ticker(market)
 Create new `Market` object arrays.
 
-## autoMarketUpdate(Market or Array\<Market\>, time , errorHandler, callback?: (market) => any)
+| Parameter      | Type                       | Description                         |
+|----------------|--------------------------- |-------------------------------------|
+| market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+
+## autoMarketUpdate(market, time , errorHandler, callback?)
 Updates object `market` every specified `time` time.
 
-## OrderBook(string or Array\<string\>)
+| Parameter      | Type                         | Description                           |
+|----------------|---------------------------   |---------------------------------------|
+| market         | `Market` or Array\<Market\>  | `Market` object that will be updated. |
+| time           | number                       | Frequency to update (in milliseconds) |
+| errorHandler   | function, (error) => any     | error handler  |
+| callback   | function, (market) => any     |  optional, this function called when object updated.  |
+
+
+## OrderBook(market)
 Create new `OrderBook` object arrays.
+
+| Parameter      | Type                       | Description                         |
+|----------------|--------------------------- |-------------------------------------|
+| market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
 
 ### OrderBook class
 * market : KRW, BTC, USDT ...
@@ -32,8 +48,15 @@ Create new `OrderBook` object arrays.
 
 ### Order class
 * price, size : `number`
-date
-## autoOrderBookUp(OrderBook or Array\<OrderBook\>, time , errorHandler, callback?: (orderBook) => any)
-`callback` is option.
 
+## autoOrderBookUpDate(orderBook, time , errorHandler, callback?)
 Updates object `OrderBook` every specified `time` time.
+
+| Parameter      | Type                         | Description                           |
+|----------------|---------------------------   |---------------------------------------|
+| orderBook         | `OrderBook` or Array\<OrderBook\>  | `OrderBook` object that will be updated. |
+| time           | number                       | Frequency to update (in milliseconds) |
+| errorHandler   | function, (error) => any     | error handler  |
+| callback   | function, (orderBook) => any     |  optional, this function called when object updated.  |
+
+
