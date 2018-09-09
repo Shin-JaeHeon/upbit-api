@@ -5,7 +5,6 @@
 [![npm](https://img.shields.io/badge/Readme-English-lightgray.svg?style=flat-square)](https://github.com/Shin-JaeHeon/upbit-api/blob/master/README.md)
 [![npm](https://img.shields.io/badge/Readme-한국어-blue.svg?style=flat-square)](https://github.com/Shin-JaeHeon/upbit-api/blob/master/README-KR.md)
 [![npm](https://img.shields.io/badge/Readme-日本語-orange.svg?style=flat-square)](https://github.com/Shin-JaeHeon/upbit-api/blob/master/README-JP.md)
-
 [![npm](https://img.shields.io/badge/Readme-汉语-orange.svg?style=flat-square)](https://github.com/Shin-JaeHeon/upbit-api/blob/master/README-CN.md)
 
 upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
@@ -38,14 +37,14 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 |----------------|--------------------------- |-------------------------------------|
 | market         | string 或 Array\<string\>  | 'KRW-BTC' 或 ['KRW-BTC', 'KRW-XRP'] |
 
-### OrderBook 클래스
-* market : KRW, BTC, USDT 등등
-* coin : BTC, ETH, ETC 등등
+### OrderBook Class
+* market : KRW, BTC, USDT ...
+* coin : BTC, ETH, ETC ...
 * lastUpdate : `Date`
 * askList, bidList : Array<`Order`>
 * totalAsk, totalBid : `number`
 
-### Order 클래스
+### Order Class
 * price, size : `number`
 
 ## autoOrderBookUpDate(orderBook, time , errorHandler, callback?)
