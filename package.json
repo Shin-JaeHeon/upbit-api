@@ -1,11 +1,11 @@
 {
   "name": "upbit-api",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "author": {
     "name": "Shin-JaeHeon",
     "email": "heoni0504@gmail.com",
-    "url": "http://shinjaeheon.tistory.com"
+    "url": "https://shinjaeheon.tistory.com"
   },
   "bug": {
     "url": "https://github.com/Shin-JaeHeon/upbit-api/issues",

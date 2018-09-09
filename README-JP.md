@@ -12,21 +12,29 @@ upbit-apiはUpbitのOpen APIをより容易に使用できるように作ったn
 
 Restful APIとWebSocket APIを支援するのが目標です。
 
-## ticker(string または Array\<string\>)
-**Market**の(KRW-BTCのようなものを指します。)配列を生成します。
+> ### 警告, v0.2.0と互換されていないます。
+> autoUpdateはautoMarketUpdateに移動しました。
 
-## autoUpdate(Market または Array<Market>)
-**Market**のオブジェクトを一定時間ごとにアップデートします。
+## ticker(string または Array\<string\>)
+`Market`の(KRW-BTCのようなものを指します。)配列を生成します。
+
+## autoMarketUpdate(Market または Array<Market> , time , errorHandler, callback?: (market) => any)
+`Market`のオブジェクトを一定時間ごとにアップデートします。
 
 ## OrderBook(string または Array\<string\>)
-**OrderBook**の配列を生成します。
+`OrderBook`の配列を生成します。
 
 ### OrderBook クラス
 * market : KRW, BTC, USDT ...
 * coin : BTC, ETH, ETC ...
-* lastUpdate : Date
-* askList, bidList : Array<**Order**>
-* totalAsk, totalBid : number
+* lastUpdate : `Date`
+* askList, bidList : Array<`Order`>
+* totalAsk, totalBid : `number`
 
 ### Order クラス
-* price, size : number
+* price, size : `number`
+
+## autoOrderBookUpdate(OrderBook または Array\<OrderBook\>, time , errorHandler, callback?: (orderBook) => any)
+`callback`はオプションです。
+
+`OrderBook`のオブジェクトを一定時間ごとにアップデートします。

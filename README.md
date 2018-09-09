@@ -9,21 +9,31 @@
 upbit-api is an API that makes Upbit OpenAPI easy to use.
 This api will support the Restful API and Websocket API.
 
-## ticker(string or Array\<string\>)
-Create new **Market** object arrays.
 
-## autoUpdate(Market or Array\<Market\>)
-Updates object **market** every specified **time** time.
+It was created with Typescript and compiled into es2017.
+> ### Warning, incompatible with v0.2.0.
+> autoUpdate has been moved to autoMarketUpdate.
+
+## ticker(string or Array\<string\>)
+Create new `Market` object arrays.
+
+## autoMarketUpdate(Market or Array\<Market\>, time , errorHandler, callback?: (market) => any)
+Updates object `market` every specified `time` time.
 
 ## OrderBook(string or Array\<string\>)
-Create new **OrderBook** object arrays.
+Create new `OrderBook` object arrays.
 
 ### OrderBook class
 * market : KRW, BTC, USDT ...
 * coin : BTC, ETH, ETC ...
-* lastUpdate : Date
-* askList, bidList : Array<**Order**>
-* totalAsk, totalBid : number
+* lastUpdate : `Date`
+* askList, bidList : Array<`Order`>
+* totalAsk, totalBid : `number`
 
 ### Order class
-* price, size : number
+* price, size : `number`
+date
+## autoOrderBookUp(OrderBook or Array\<OrderBook\>, time , errorHandler, callback?: (orderBook) => any)
+`callback` is option.
+
+Updates object `OrderBook` every specified `time` time.
