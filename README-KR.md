@@ -15,14 +15,29 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 > ### 경고, v0.2.0과 호환되지 않습니다
 > autoUpdate는 autoMarketUpdate으로 이동하였습니다.
 
-## ticker(string 또는 Array\<string\>)
+## ticker(market)
 `Market` 오브젝트(KRW-BTC 같은 것을 일컫습니다.) 배열을 생성합니다.
 
-## autoMarketUpdate(Market 또는 Array<Market>, time , errorHandler, callback?: (market) => any)
+| 매개변수       | 타입                       | 설명                                 |
+|----------------|--------------------------- |-------------------------------------|
+| market         | string 또는 Array\<string\>  | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
+
+## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market` 오브젝트를 일정 `time`마다 업데이트 합니다.
+
+| 매개변수       | 타입                         | 설명                                   |
+|----------------|---------------------------   |---------------------------------------|
+| market         | `Market` 또는 Array\<Market\>  |  업데이트 될  `Market` 오브젝트 |
+| time           | number                       | 업데이트 주기 (밀리초) |
+| errorHandler   | function, (error) => any     | 에러 핸들러  |
+| callback   | function, (market) => any     |  선택사항, 오브젝트가 업데이트 될 때 호출됩니다. |
 
 ## OrderBook(string 또는 Array\<string\>)
 `OrderBook` 오브젝트 배열을 반환합니다.
+
+| 매개변수       | 타입                       | 설명                                 |
+|----------------|--------------------------- |-------------------------------------|
+| market         | string 또는 Array\<string\>  | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
 
 ### OrderBook 클래스
 * market : KRW, BTC, USDT 등등
@@ -34,10 +49,12 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 ### Order 클래스
 * price, size : `number`
 
-## autoUpdate(Market 또는 Array<Market>)
-`Market` 오브젝트를 일정 시간마다 업데이트 합니다.
-
-## autoOrderBookUpdate(OrderBook 또는 Array\<OrderBook\>, time , errorHandler, callback?: (orderBook) => any)
-`callback`은 옵션입니다. 
-
+## autoOrderBookUpDate(orderBook, time , errorHandler, callback?)
 `OrderBook` 오브젝트를 일정 시간마다 업데이트 합니다.
+
+| 매개변수       | 타입                         | 설명                                   |
+|----------------|---------------------------   |---------------------------------------|
+| orderBook         | `OrderBook` 또는 Array\<OrderBook\>  |업데이트 될  `OrderBook` 오브젝트 |
+| time           | number                       | 업데이트 주기 (밀리초) |
+| errorHandler   | function, (error) => any     | 에러 핸들러  |
+| callback   | function, (orderBook) => any     |  선택사항, 오브젝트가 업데이트 될 때 호출됩니다. |
