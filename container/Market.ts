@@ -30,6 +30,10 @@ export default class {
 
   }
 
+  get marketCode(): string {
+    return `${this._coin}-${this._market}`;
+  }
+
   get coin(): string {
     return this._coin;
   }

@@ -22,7 +22,12 @@ Restful APIとWebSocket APIを支援するのが目標です。
   | パラメータ       | タイプ                       | 説明                                 |
 |----------------|--------------------------- |-------------------------------------|
 | market         | string または Array\<string\>  | 'KRW-BTC' または ['KRW-BTC', 'KRW-XRP'] |
-
+### Market class
+| Name     | タイプ   | 説明      |
+|----------------|------- |-------------|
+| market         | string | ex) KRW, BTC, USDT ... |
+| coin         | string | ex) BTC, ETH, XRP ... |
+| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market`のオブジェクトを一定時間ごとにアップデートします。
 
@@ -40,15 +45,24 @@ Restful APIとWebSocket APIを支援するのが目標です。
 |----------------|--------------------------- |-------------------------------------|
 | market         | string または Array\<string\>  | 'KRW-BTC' または ['KRW-BTC', 'KRW-XRP'] |
 
-### OrderBook クラス
-* market : KRW, BTC, USDT ...
-* coin : BTC, ETH, ETC ...
-* lastUpdate : `Date`
-* askList, bidList : Array<`Order`>
-* totalAsk, totalBid : `number`
+### OrderBook classクラス
+| Name     | タイプ   | 説明      |
+|----------------|------- |-------------|
+| market         | string | ex) KRW, BTC, USDT ... |
+| coin         | string | ex) BTC, ETH, XRP ... |
+| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+| lastUpdate         | `Date` | このオブジェクトが更新された時刻 |
+| askList         | Array\<`Order`\> | Ask order リスト |
+| bidList         | Array\<`Order`\> | Bid order リスト |
+| totalAsk         |number  | total ask  |
+| totalBid         |number  | total bid  |
 
 ### Order クラス
 * price, size : `number`
+| Name     | タイプ   | 説明      |
+|----------------|------- |-------------|
+| price       | number | price of order|
+| size        | number | size of order |
 
 ## autoOrderBookUpdate(orderBook, time , errorHandler, callback?)
 `OrderBook`のオブジェクトを一定時間ごとにアップデートします。

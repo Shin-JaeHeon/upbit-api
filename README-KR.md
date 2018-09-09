@@ -23,6 +23,13 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 |----------------|--------------------------- |-------------------------------------|
 | market         | string 또는 Array\<string\>  | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
 
+### Market 클래스
+| 이름     | 타입   | 설명 |
+|----------------|------- |-------------|
+| market         | string | ex) KRW, BTC, USDT ... |
+| coin         | string | ex) BTC, ETH, XRP ... |
+| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market` 오브젝트를 일정 `time`마다 업데이트 합니다.
 
@@ -40,15 +47,24 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 |----------------|--------------------------- |-------------------------------------|
 | market         | string 또는 Array\<string\>  | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
 
-### OrderBook 클래스
-* market : KRW, BTC, USDT 등등
-* coin : BTC, ETH, ETC 등등
-* lastUpdate : `Date`
-* askList, bidList : Array<`Order`>
-* totalAsk, totalBid : `number`
+### OrderBook class
+| 매개변수  |    타입        | 설명 |
+|----------------|------- |-------------|
+| market         | string | ex) KRW, BTC, USDT ... |
+| coin         | string | ex) BTC, ETH, XRP ... |
+| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+| lastUpdate         | `Date` | 이 객체가 업데이트된 시간|
+| askList         | Array\<`Order`\> | Ask 오더 리스트 |
+| bidList         | Array\<`Order`\> | Bid 오더 리스트 |
+| totalAsk         |number  | 토탈 ask  |
+| totalBid         |number  | 토탈 bid  |
 
-### Order 클래스
+### Order class
 * price, size : `number`
+| 매개변수  |    타입        | 설명 |
+|----------------|------- |-------------|
+| price       | number | 가격|
+| size        | number | 주문량 |
 
 ## autoOrderBookUpDate(orderBook, time , errorHandler, callback?)
 `OrderBook` 오브젝트를 일정 시간마다 업데이트 합니다.

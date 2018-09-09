@@ -21,6 +21,12 @@ Create new `Market` object arrays.
 | Parameter      | Type                       | Description                         |
 |----------------|--------------------------- |-------------------------------------|
 | market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+### Market class
+| Name     | Type   | Description |
+|----------------|------- |-------------|
+| market         | string | ex) KRW, BTC, USDT ... |
+| coin         | string | ex) BTC, ETH, XRP ... |
+| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
 
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 Updates object `market` every specified `time` time.
@@ -41,14 +47,23 @@ Create new `OrderBook` object arrays.
 | market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
 
 ### OrderBook class
-* market : KRW, BTC, USDT ...
-* coin : BTC, ETH, ETC ...
-* lastUpdate : `Date`
-* askList, bidList : Array<`Order`>
-* totalAsk, totalBid : `number`
+| Name     | Type   | Description |
+|----------------|------- |-------------|
+| market         | string | ex) KRW, BTC, USDT ... |
+| coin         | string | ex) BTC, ETH, XRP ... |
+| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+| lastUpdate         | `Date` | the time when this object updated |
+| askList         | Array\<`Order`\> | Ask order list |
+| bidList         | Array\<`Order`\> | Bid order list |
+| totalAsk         |number  | total ask  |
+| totalBid         |number  | total bid  |
 
 ### Order class
 * price, size : `number`
+| Name     | Type   | Description |
+|----------------|------- |-------------|
+| price       | number | price of order|
+| size        | number | size of order |
 
 ## autoOrderBookUpDate(orderBook, time , errorHandler, callback?)
 Updates object `OrderBook` every specified `time` time.

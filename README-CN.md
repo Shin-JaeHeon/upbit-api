@@ -20,6 +20,13 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 |----------------|--------------------------- |-------------------------------------|
 | market         | string 或 Array\<string\>  | 'KRW-BTC' 或 ['KRW-BTC', 'KRW-XRP'] |
 
+### Market class
+| Name     | 类型   | 说明 |
+|----------------|------- |-------------|
+| market         | string | ex) KRW, BTC, USDT ... |
+| coin         | string | ex) BTC, ETH, XRP ... |
+| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 更新对象`Market`每个特定的`time(ms)`时间。
 
@@ -37,16 +44,25 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 |----------------|--------------------------- |-------------------------------------|
 | market         | string 或 Array\<string\>  | 'KRW-BTC' 或 ['KRW-BTC', 'KRW-XRP'] |
 
-### OrderBook Class
-* market : KRW, BTC, USDT ...
-* coin : BTC, ETH, ETC ...
-* lastUpdate : `Date`
-* askList, bidList : Array<`Order`>
-* totalAsk, totalBid : `number`
 
-### Order Class
+### OrderBook class
+| Name     | 类型   | 说明 |
+|----------------|------- |-------------|
+| market         | string | ex) KRW, BTC, USDT ... |
+| coin         | string | ex) BTC, ETH, XRP ... |
+| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+| lastUpdate         | `Date` | the time when this object updated |
+| askList         | Array\<`Order`\> | Ask order list |
+| bidList         | Array\<`Order`\> | Bid order list |
+| totalAsk         |number  | total ask  |
+| totalBid         |number  | total bid  |
+
+### Order class
 * price, size : `number`
-
+| Name     | 类型   | 说明 |
+|----------------|------- |-------------|
+| price       | number | price of order|
+| size        | number | size of order |
 ## autoOrderBookUpDate(orderBook, time , errorHandler, callback?)
 更新对象`OrderBook`每个特定的`time(ms)`时间。
 

@@ -14,6 +14,10 @@ export default class {
     this._coin = coin;
   }
 
+  get marketCode(): string {
+    return `${this._coin}-${this._market}`;
+  }
+
   get market(): string {
     return this._market;
   }
