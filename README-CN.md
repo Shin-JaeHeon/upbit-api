@@ -58,7 +58,6 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 | totalBid         |number  | total bid  |
 
 ### Order class
-* price, size : `number`
 | Name     | 类型   | 说明 |
 |----------------|------- |-------------|
 | price       | number | price of order|

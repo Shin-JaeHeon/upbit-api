@@ -58,7 +58,6 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | totalBid         |number  | total bid  |
 
 ### Order クラス
-* price, size : `number`
 | Name     | タイプ   | 説明      |
 |----------------|------- |-------------|
 | price       | number | price of order|

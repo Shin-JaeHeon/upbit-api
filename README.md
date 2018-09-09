@@ -59,7 +59,7 @@ Create new `OrderBook` object arrays.
 | totalBid         |number  | total bid  |
 
 ### Order class
-* price, size : `number`
+
 | Name     | Type   | Description |
 |----------------|------- |-------------|
 | price       | number | price of order|

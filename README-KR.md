@@ -60,7 +60,6 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | totalBid         |number  | 토탈 bid  |
 
 ### Order class
-* price, size : `number`
 | 매개변수  |    타입        | 설명 |
 |----------------|------- |-------------|
 | price       | number | 가격|
