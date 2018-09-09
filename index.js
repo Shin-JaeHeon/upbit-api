@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Market_1 = require("./container/Market");
 const OrderBook_1 = require("./container/OrderBook");
 const Order_1 = require("./container/Order");
+const Trade_1 = require("./container/Trade");
 const request = require("request");
 function setMarketData(market, v) {
     market.tradeTime = new Date(v['trade_timestamp']);
@@ -59,7 +60,7 @@ function ticker(market) {
  * @param market An object or an Array<Market> to update
  * @param time update interval(ms)
  * @param {(error) => any} errorHandler
- * @param {(market) => any} callback called when updated
+ * @param {(market) => any} callback called when updated, optional
  */
 function autoMarketUpdate(market, time, errorHandler, callback) {
     const run = market => setInterval(() => {
@@ -131,4 +132,52 @@ function orderBook(market) {
         });
     });
 }
-exports.default = { ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate };
+function setTradeData(v, trade) {
+    trade.tradeTime = new Date(v['timestamp']);
+    trade.price = v['trade_price'];
+    trade.volume = v['trade_volume'];
+    trade.prev_closing_price = v['prev_closing_price'];
+    trade.change_price = v['change_price'];
+    trade.sequential_id = v['sequential_id'];
+    trade.isAsk = v['ask_bid'] === 'ASK';
+    trade.lastUpdate = new Date();
+    return trade;
+}
+/**
+ * ticks
+ * @param {string | Array<string>}market ex) KRW-XRP
+ * @param {number} count
+ * @param {string} to HHmmss or HH:mm:ss
+ * @param {number} cursor sequential_id
+ */
+function ticks(market, count = 1, to, cursor) {
+    return new Promise((resolve, reject) => {
+        const options = {
+            method: 'GET',
+            url: 'https://api.upbit.com/v1/trades/ticks',
+            qs: {
+                market: market.toString(),
+                count: count,
+            }
+        };
+        // @ts-ignore
+        if (to)
+            options.to = to;
+        // @ts-ignore
+        if (cursor)
+            options.cursor = curosr;
+        request(options, (error, response, body) => {
+            if (error)
+                reject(error);
+            else {
+                body = JSON.parse(body.toString());
+                resolve(body.map(v => {
+                    const trade = new Trade_1.default(v['market'].split('-')[0], v['market'].split('-')[1]);
+                    setTradeData(v, trade);
+                    return trade;
+                }));
+            }
+        });
+    });
+}
+exports.default = { ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks };

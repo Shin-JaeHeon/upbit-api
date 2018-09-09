@@ -1,6 +1,7 @@
 import Market from "./container/Market";
 import OrderBook from "./container/OrderBook";
 import Order from "./container/Order";
+import Trade from "./container/Trade";
 
 const request = require("request");
 
@@ -60,7 +61,7 @@ function ticker(market: Array<string>): Promise<Array<Market>> {
  * @param market An object or an Array<Market> to update
  * @param time update interval(ms)
  * @param {(error) => any} errorHandler
- * @param {(market) => any} callback called when updated
+ * @param {(market) => any} callback called when updated, optional
  */
 function autoMarketUpdate(market: any, time: number, errorHandler: (error) => any, callback?: (market) => any): void {
   const run = market => setInterval(() => {
@@ -129,4 +130,52 @@ function orderBook(market: any): Promise<Array<OrderBook>> {
   });
 }
 
-export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate}
+function setTradeData(v, trade: Trade): Trade {
+  trade.tradeTime = new Date(v['timestamp']);
+  trade.price = v['trade_price'];
+  trade.volume = v['trade_volume'];
+  trade.prev_closing_price = v['prev_closing_price'];
+  trade.change_price = v['change_price'];
+  trade.sequential_id = v['sequential_id'];
+  trade.isAsk = v['ask_bid'] === 'ASK';
+  trade.lastUpdate = new Date();
+  return trade;
+}
+
+/**
+ * ticks
+ * @param {string | Array<string>}market ex) KRW-XRP
+ * @param {number} count
+ * @param {string} to HHmmss or HH:mm:ss
+ * @param {number} cursor sequential_id
+ */
+function ticks(market: string | Array<string>, count: number = 1, to?: string, cursor?: number): Promise<Array<Trade>> {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: 'GET',
+      url: 'https://api.upbit.com/v1/trades/ticks',
+      qs: {
+        market: market.toString(),
+        count: count,
+
+      }
+    };
+    // @ts-ignore
+    if (to) options.to = to;
+    // @ts-ignore
+    if (cursor) options.cursor = curosr;
+    request(options, (error, response, body) => {
+      if (error) reject(error);
+      else {
+        body = JSON.parse(body.toString());
+        resolve(body.map(v => {
+          const trade = new Trade(v['market'].split('-')[0], v['market'].split('-')[1]);
+          setTradeData(v, trade);
+          return trade;
+        }));
+      }
+    });
+  });
+}
+
+export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks}
