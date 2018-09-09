@@ -75,4 +75,27 @@ Updates object `OrderBook` every specified `time` time.
 | errorHandler   | function, (error) => any     | error handler  |
 | callback   | function, (orderBook) => any     |  optional, this function called when object updated.  |
 
+## ticks(market)
+Create new `Trade` object arrays.
 
+| Parameter      | Type                       | Description                         |
+|----------------|--------------------------- |-------------------------------------|
+| params         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+| count          | number                     | count                               |
+| to             | string                     | HHmmss or HH:mm:ss                  |
+| cursor         | number                     | sequential_id                       |
+
+### Trade class
+| Name               | Type   | Description |
+|--------------------|-------  |-------------|
+| market             | string  | ex) KRW, BTC, USDT ... |
+| coin               | string  | ex) BTC, ETH, XRP ... |
+| marketCode         | string  | ex) KRW-BTC, KRW-XRP ... |
+| lastUpdate         | `Date`  | The time when this object updated |
+| tradeTime          | `Date`  | The time when traded |
+| price              | number  | price of this trade |
+| volume             | number  | volume of this trade  |
+| prev_closing_price | number  | prev_closing_price |
+| change_price       | number  | price - prev_closing_price  |
+| isAsk              | boolean | Trade type  |
+| sequential_id      | number  | Transaction Number(Unique)  |

@@ -23,7 +23,7 @@ Restful APIとWebSocket APIを支援するのが目標です。
 |----------------|--------------------------- |-------------------------------------|
 | market         | string または Array\<string\>  | 'KRW-BTC' または ['KRW-BTC', 'KRW-XRP'] |
 ### Market class
-| Name     | タイプ   | 説明      |
+| 名     | タイプ   | 説明      |
 |----------------|------- |-------------|
 | market         | string | ex) KRW, BTC, USDT ... |
 | coin         | string | ex) BTC, ETH, XRP ... |
@@ -46,22 +46,22 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | market         | string または Array\<string\>  | 'KRW-BTC' または ['KRW-BTC', 'KRW-XRP'] |
 
 ### OrderBook classクラス
-| Name     | タイプ   | 説明      |
+| 名     | タイプ   | 説明      |
 |----------------|------- |-------------|
 | market         | string | ex) KRW, BTC, USDT ... |
 | coin         | string | ex) BTC, ETH, XRP ... |
 | marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
 | lastUpdate         | `Date` | このオブジェクトが更新された時刻 |
-| askList         | Array\<`Order`\> | Ask order リスト |
-| bidList         | Array\<`Order`\> | Bid order リスト |
+| askList         | Array\<`Order`\> | Ask オーダーリスト |
+| bidList         | Array\<`Order`\> | Bid オーダーリスト |
 | totalAsk         |number  | total ask  |
 | totalBid         |number  | total bid  |
 
 ### Order クラス
-| Name     | タイプ   | 説明      |
+| 名     | タイプ   | 説明      |
 |----------------|------- |-------------|
-| price       | number | price of order|
-| size        | number | size of order |
+| price       | number | 価格|
+| size        | number | 注文量 |
 
 ## autoOrderBookUpdate(orderBook, time , errorHandler, callback?)
 `OrderBook`のオブジェクトを一定時間ごとにアップデートします。
@@ -73,5 +73,29 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | errorHandler   | function, (error) => any     | エラーハンドラ  |
 | callback   | function, (orderBook) => any     |  選択事項、オブジェクトが更新されときに呼び出されます。 |
 
+## ticks(market)
+Create new `Trade` object arrays.
+
+| パラメータ     | タイプ                      | 説明                                |
+|----------------|--------------------------- |-------------------------------------|
+| params         | string または Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+| count          | number                     | count                               |
+| to             | string                     | HHmmss or HH:mm:ss                  |
+| cursor         | number                     | sequential_id                       |
+
+### Trade class
+| 名               | Type   | Description |
+|--------------------|-------  |-------------|
+| market             | string  | ex) KRW, BTC, USDT ... |
+| coin               | string  | ex) BTC, ETH, XRP ... |
+| marketCode         | string  | ex) KRW-BTC, KRW-XRP ... |
+| lastUpdate         | `Date`  | このオブジェクトが更新された時刻|
+| tradeTime          | `Date`  | 締結時間 |
+| price              | number  | 締結の価格 |
+| volume             | number  | 締結取引量  |
+| prev_closing_price | number  | 前日終値 |
+| change_price       | number  | 変化量  |
+| isAsk              | boolean | 罵倒/買収 |
+| sequential_id      | number  | 締結番号(Unique)  |
 
 翻訳に間違いがあれば、PRお願いします。

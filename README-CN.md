@@ -21,7 +21,7 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 | market         | string 或 Array\<string\>  | 'KRW-BTC' 或 ['KRW-BTC', 'KRW-XRP'] |
 
 ### Market class
-| Name     | 类型   | 说明 |
+| 名       | 类型   | 说明 |
 |----------------|------- |-------------|
 | market         | string | ex) KRW, BTC, USDT ... |
 | coin         | string | ex) BTC, ETH, XRP ... |
@@ -46,19 +46,19 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 
 
 ### OrderBook class
-| Name     | 类型   | 说明 |
+| 名       | 类型   | 说明 |
 |----------------|------- |-------------|
 | market         | string | ex) KRW, BTC, USDT ... |
 | coin         | string | ex) BTC, ETH, XRP ... |
 | marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
-| lastUpdate         | `Date` | the time when this object updated |
+| lastUpdate         | `Date` | 此对象更新的时间 |
 | askList         | Array\<`Order`\> | Ask order list |
 | bidList         | Array\<`Order`\> | Bid order list |
 | totalAsk         |number  | total ask  |
 | totalBid         |number  | total bid  |
 
 ### Order class
-| Name     | 类型   | 说明 |
+| 名       | 类型   | 说明 |
 |----------------|------- |-------------|
 | price       | number | price of order|
 | size        | number | size of order |
@@ -71,3 +71,28 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 | time           | number                       | 更新周期 (毫秒) |
 | errorHandler   | function, (error) => any     | 错误处理程序  |
 | callback   | function, (orderBook) => any     |  选择事项, this function called when object updated.  |
+
+## ticks(market)
+创建新的`Trade`对象数组。
+
+| 参数           | 类型                       | 说明                         |
+|----------------|--------------------------- |-------------------------------------|
+| params         | string 或 Array\<string\>  | 'KRW-BTC' 或 ['KRW-BTC', 'KRW-XRP'] |
+| count          | number                     | count                               |
+| to             | string                     | HHmmss or HH:mm:ss                  |
+| cursor         | number                     | sequential_id                       |
+
+### Trade class
+| 名                 | 类型    | 说明 |
+|--------------------|-------  |-------------|
+| market             | string  | ex) KRW, BTC, USDT ... |
+| coin               | string  | ex) BTC, ETH, XRP ... |
+| marketCode         | string  | ex) KRW-BTC, KRW-XRP ... |
+| lastUpdate         | `Date`  | 此对象更新的时间 |
+| tradeTime          | `Date`  | 交易时间|
+| price              | number  | 合同价格 |
+| volume             | number  | 订单数量  |
+| prev_closing_price | number  | 前一日收盘价 |
+| change_price       | number  | 合同价格 - 前一日收盘价  |
+| isAsk              | boolean | 合同类型  |
+| sequential_id      | number  | 合同号(Unique)  |
