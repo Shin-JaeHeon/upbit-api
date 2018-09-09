@@ -1,56 +1,64 @@
 import Order from "./Order";
 
 export default class {
-    private readonly _market: string;
-    private readonly _coin: string;
-    private _lastUpdate: Date;
-    private _askList: Array<Order>;
-    private _bidList: Array<Order>;
-    private _totalAsk: number;
-    private _totalBid: number;
+  private readonly _market: string;
+  private readonly _coin: string;
+  private _lastUpdate: Date;
+  private _askList: Array<Order>;
+  private _bidList: Array<Order>;
+  private _totalAsk: number;
+  private _totalBid: number;
 
-    constructor(market, coin) {
-        this._market = market;
-        this._coin = coin;
-    }
+  constructor(market, coin) {
+    this._market = market;
+    this._coin = coin;
+  }
 
-    get lastUpdate(): Date {
-        return this._lastUpdate;
-    }
+  get market(): string {
+    return this._market;
+  }
 
-    set lastUpdate(value: Date) {
-        this._lastUpdate = value;
-    }
+  get coin(): string {
+    return this._coin;
+  }
 
-    get askList(): Array<Order> {
-        return this._askList;
-    }
+  get lastUpdate(): Date {
+    return this._lastUpdate;
+  }
 
-    set askList(value: Array<Order>) {
-        this._askList = value;
-    }
+  set lastUpdate(value: Date) {
+    this._lastUpdate = value;
+  }
 
-    get bidList(): Array<Order> {
-        return this._bidList;
-    }
+  get askList(): Array<Order> {
+    return this._askList;
+  }
 
-    set bidList(value: Array<Order>) {
-        this._bidList = value;
-    }
+  set askList(value: Array<Order>) {
+    this._askList = value;
+  }
 
-    get totalBid(): number {
-        return this._totalBid;
-    }
+  get bidList(): Array<Order> {
+    return this._bidList;
+  }
 
-    set totalBid(value: number) {
-        this._totalBid = value;
-    }
+  set bidList(value: Array<Order>) {
+    this._bidList = value;
+  }
 
-    get totalAsk(): number {
-        return this._totalAsk;
-    }
+  get totalBid(): number {
+    return this._totalBid;
+  }
 
-    set totalAsk(value: number) {
-        this._totalAsk = value;
-    }
+  set totalBid(value: number) {
+    this._totalBid = value;
+  }
+
+  get totalAsk(): number {
+    return this._totalAsk;
+  }
+
+  set totalAsk(value: number) {
+    this._totalAsk = value;
+  }
 }

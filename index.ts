@@ -62,7 +62,7 @@ function ticker(market: Array<string>): Promise<Array<Market>> {
  * @param {(error) => any} errorHandler
  * @param {(market) => any} callback called when updated
  */
-function autoUpdate(market: any, time: number, errorHandler: (error) => any, callback?: (market) => any): void {
+function autoMarketUpdate(market: any, time: number, errorHandler: (error) => any, callback?: (market) => any): void {
   const run = market => setInterval(() => {
     const options = {
       method: 'GET', url: 'https://api.upbit.com/v1/ticker', qs: {markets: `${market.market}-${market.coin}`}
@@ -81,6 +81,36 @@ function autoUpdate(market: any, time: number, errorHandler: (error) => any, cal
 
 }
 
+function setOrderBookData(v, orderBook: OrderBook): OrderBook {
+  const ask = [];
+  const bid = [];
+  v['orderbook_units'].forEach(v => {
+    ask.push(new Order(v['ask_price'], v['ask_size']));
+    bid.push(new Order(v['bid_price'], v['bid_size']));
+  });
+  orderBook.askList = ask;
+  orderBook.bidList = bid;
+  return orderBook;
+}
+
+function autoOrderBookUpdate(orderBook: any, time: number, errorHandler: (error) => any, callback?: (orderBook) => any): void {
+  const run = orderBook => setInterval(() => {
+    request({
+      method: 'GET',
+      url: 'https://api.upbit.com/v1/orderbook',
+      qs: {markets: `${orderBook.market}-${orderBook.coin}`}
+    }, (error, response, body) => {
+      if (error) errorHandler(error);
+      body = JSON.parse(body);
+      setOrderBookData(body[0], orderBook);
+      if (callback) callback(orderBook);
+    });
+  }, time);
+  if (Array.isArray(orderBook)) orderBook.forEach(v => run(v));
+  else run(orderBook);
+
+}
+
 /**
  * Load the order book.
  * @param market
@@ -92,22 +122,11 @@ function orderBook(market: any): Promise<Array<OrderBook>> {
       url: 'https://api.upbit.com/v1/orderbook',
       qs: {markets: market.toString()}
     }, (error, response, body) => {
+      if (error) reject(error);
       body = JSON.parse(body);
-      resolve(body.map(v => {
-          const order = new OrderBook(v['market'].split('-')[0], v['market'].split('-')[1]);
-          const ask = [];
-          const bid = [];
-          v['orderbook_units'].forEach(v => {
-            ask.push(new Order(v['ask_price'], v['ask_size']));
-            bid.push(new Order(v['bid_price'], v['bid_size']));
-          });
-          order.askList = ask;
-          order.bidList = bid;
-          return order;
-        }
-      ));
+      resolve(body.map(v => setOrderBookData(v, new OrderBook(v['market'].split('-')[0], v['market'].split('-')[1]))));
     });
   });
 }
 
-export default {ticker, autoUpdate, orderBook}
+export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate}
