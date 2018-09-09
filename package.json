@@ -1,6 +1,7 @@
 {
   "name": "upbit-api",
-  "version": "0.3.0",
+  "version": "0.3.1",
+  "description": "This is an API that makes Upbit OpenAPI easy to use.",
   "main": "index.js",
   "author": {
     "name": "Shin-JaeHeon",
