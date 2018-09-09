@@ -31,7 +31,7 @@ export default class {
   }
 
   get marketCode(): string {
-    return `${this._coin}-${this._market}`;
+    return `${this._market}-${this._coin}`;
   }
 
   get coin(): string {
