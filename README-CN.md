@@ -21,11 +21,32 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 | market         | string 或 Array\<string\>  | 'KRW-BTC' 或 ['KRW-BTC', 'KRW-XRP'] |
 
 ### Market class
-| 名       | 类型   | 说明 |
-|----------------|------- |-------------|
-| market         | string | ex) KRW, BTC, USDT ... |
-| coin         | string | ex) BTC, ETH, XRP ... |
-| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+| 名                | 类型   | 说明                               |
+|-------------------|--------|------------------------------------|
+| market            | string | ex) KRW, BTC, USDT ...             |
+| coin              | string | ex) BTC, ETH, XRP ...              |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...           |
+| tradeTime         | `Date` | 交易时间                           |
+| price             | number | 低价                               |
+| open              | number | 起价                               |
+| high              | number | 最高价                             |
+| low               | number | 最低价                             |
+| prevClose         | number | 前日終价                           |
+| change            | number | EVEN(补合), RISE(上升), FALL(下跌) |
+| changePrice       | number | 变值金额绝对值                     |
+| changeRate        | number | 变化率绝对值                       |
+| signedChangePrice | number | signed 变化金额                    |
+| signedChangeRate  | number | signed 变码率                      |
+| tradeVolume       | number | 最新交易量                         |
+| accTradePrice     | number | 累计交易货款(UTC零点)              |
+| accTradePrice24   | number | 24小时累计交易货款                 |
+| accTradeVolume    | number | 累计交易量(UTC零点)                |
+| accTradeVolume24  | number | 24小时累计交易货款                 |
+| high52wPrice      | number | 第52话新的高价                     |
+| high52wDate       | `Date` | 第52话新的高价成就日               |
+| low52wPrice       | number | 第52话新的低价                     |
+| lowhigh52wDate    | `Date` | 第52话新的低价成就日               |
+| lastUpdate        | `Date` | 该对象更新的时间                   |
 
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 更新对象`Market`每个特定的`time(ms)`时间。
@@ -51,7 +72,7 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 | market         | string | ex) KRW, BTC, USDT ... |
 | coin         | string | ex) BTC, ETH, XRP ... |
 | marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
-| lastUpdate         | `Date` | 此对象更新的时间 |
+| lastUpdate         | `Date` | 该对象更新的时间 |
 | askList         | Array\<`Order`\> | Ask order list |
 | bidList         | Array\<`Order`\> | Bid order list |
 | totalAsk         |number  | total ask  |
@@ -88,7 +109,7 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 | market             | string  | ex) KRW, BTC, USDT ... |
 | coin               | string  | ex) BTC, ETH, XRP ... |
 | marketCode         | string  | ex) KRW-BTC, KRW-XRP ... |
-| lastUpdate         | `Date`  | 此对象更新的时间 |
+| lastUpdate         | `Date`  | 该对象更新的时间 |
 | tradeTime          | `Date`  | 交易时间|
 | price              | number  | 合同价格 |
 | volume             | number  | 订单数量  |
