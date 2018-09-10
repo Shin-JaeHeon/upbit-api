@@ -23,11 +23,32 @@ Restful APIとWebSocket APIを支援するのが目標です。
 |----------------|--------------------------- |-------------------------------------|
 | market         | string または Array\<string\>  | 'KRW-BTC' または ['KRW-BTC', 'KRW-XRP'] |
 ### Market class
-| 名     | タイプ   | 説明      |
-|----------------|------- |-------------|
-| market         | string | ex) KRW, BTC, USDT ... |
-| coin         | string | ex) BTC, ETH, XRP ... |
-| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+| 名                | タイプ | 説明                                 |
+|-------------------|--------|--------------------------------------|
+| market            | string | ex) KRW, BTC, USDT ...               |
+| coin              | string | ex) BTC, ETH, XRP ...                |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...             |
+| tradeTime         | `Date` | 取引時間                             |
+| price             | number | 価格                                 |
+| open              | number | 時価                                 |
+| high              | number | 高価                                 |
+| low               | number | 低価格                               |
+| prevClose         | number | 前日終値                             |
+| change            | number | EVEN(横ばい), RISE(上昇), FALL(下落) |
+| changePrice       | number | 変化金額の絶対値                     |
+| changeRate        | number | 変化率の絶対値                       |
+| signedChangePrice | number | 符号がある変化の金額                 |
+| signedChangeRate  | number | 符号がある変化率                     |
+| tradeVolume       | number | 最新の取引量                         |
+| accTradePrice     | number | 累積取引代金(UTC 0時基準)            |
+| accTradePrice24   | number | 24時間の累積取引代金                 |
+| accTradeVolume    | number | 累積取引量(UTC 0時基準)              |
+| accTradeVolume24  | number | 24時間の累積取引代金                 |
+| high52wPrice      | number | 52週の新しい高価                     |
+| high52wDate       | `Date` | 52注意新しい高価達成日               |
+| low52wPrice       | number | 52注意新しい低価格                   |
+| lowhigh52wDate    | `Date` | 52注意新しい低価格達成日             |
+| lastUpdate        | `Date` | このオブジェクトが更新された時刻     |
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market`のオブジェクトを一定時間ごとにアップデートします。
 
