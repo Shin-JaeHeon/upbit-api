@@ -22,11 +22,32 @@ Create new `Market` object arrays.
 |----------------|--------------------------- |-------------------------------------|
 | market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
 ### Market class
-| Name     | Type   | Description |
-|----------------|------- |-------------|
-| market         | string | ex) KRW, BTC, USDT ... |
-| coin         | string | ex) BTC, ETH, XRP ... |
-| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+| Parameter         | Type   | Description                                |
+|-------------------|--------|--------------------------------------------|
+| market            | string | ex) KRW, BTC, USDT ...                     |
+| coin              | string | ex) BTC, ETH, XRP ...                      |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...                   |
+| tradeTime         | `Date` | trade time                                 |
+| price             | number | price                                      |
+| open              | number | Market value                               |
+| high              | number | Highest price                              |
+| low               | number | Lowest price                               |
+| prevClose         | number | the closing price of the previous day      |
+| change            | number | EVEN: Mixture RISE: Rise FALL: Fall        |
+| changePrice       | number | Absolute value of change amount            |
+| changeRate        | number | Absolute value of change rate              |
+| signedChangePrice | number | signed change Price                        |
+| signedChangeRate  | number | signed change rate                         |
+| tradeVolume       | number | Latest volume                              |
+| accTradePrice     | number | accTradePrice                              |
+| accTradePrice24   | number | accTradePrice24                            |
+| accTradeVolume    | number | Cumulative transaction amount(UTC 0)       |
+| accTradeVolume24  | number | Cumulative transaction amount for 24 hours |
+| high52wPrice      | number | 52 Weeks New Highest Price                 |
+| high52wDate       | `Date` | 52 Weeks New Highest Price'Date            |
+| low52wPrice       | number | 52 Weeks New Lowest Price                  |
+| lowhigh52wDate    | `Date` | 52 Weeks New Lowest Price's Date           |
+| lastUpdate        | `Date` | The time when this object updated          |
 
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 Updates object `market` every specified `time` time.
@@ -52,7 +73,7 @@ Create new `OrderBook` object arrays.
 | market         | string | ex) KRW, BTC, USDT ... |
 | coin         | string | ex) BTC, ETH, XRP ... |
 | marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
-| lastUpdate         | `Date` | the time when this object updated |
+| lastUpdate         | `Date` | The time when this object updated |
 | askList         | Array\<`Order`\> | Ask order list |
 | bidList         | Array\<`Order`\> | Bid order list |
 | totalAsk         |number  | total ask  |
