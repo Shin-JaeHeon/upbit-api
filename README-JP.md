@@ -52,12 +52,12 @@ Restful APIとWebSocket APIを支援するのが目標です。
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market`のオブジェクトを一定時間ごとにアップデートします。
 
-| パラメータ       | タイプ                         | 説明                                   |
-|----------------|---------------------------   |---------------------------------------|
-| market         | `Market` または Array\<Market\>  |  アップデートなる  `Market` オブジェクト |
-| time           | number                       | アップデート周期 (ミリ秒) |
-| errorHandler   | function, (error) => any     | エラーハンドラ  |
-| callback   | function, (market) => any     |  選択事項、オブジェクトが更新されときに呼び出されます。 |
+| パラメータ   | タイプ                          | 説明                                                   |
+|--------------|---------------------------------|--------------------------------------------------------|
+| market       | `Market` または Array\<Market\> | アップデートなる  `Market` オブジェクト                |
+| time         | number                          | アップデート周期 (ミリ秒)                              |
+| errorHandler | function, (error) => any        | エラーハンドラ                                         |
+| callback     | function, (market) => any       | 選択事項、オブジェクトが更新されときに呼び出されます。 |
 
 ## OrderBook(market)
 `OrderBook`の配列を生成します。
@@ -67,16 +67,16 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | market         | string または Array\<string\>  | 'KRW-BTC' または ['KRW-BTC', 'KRW-XRP'] |
 
 ### OrderBook classクラス
-| 名     | タイプ   | 説明      |
-|----------------|------- |-------------|
-| market         | string | ex) KRW, BTC, USDT ... |
-| coin         | string | ex) BTC, ETH, XRP ... |
-| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
-| lastUpdate         | `Date` | このオブジェクトが更新された時刻 |
-| askList         | Array\<`Order`\> | Ask オーダーリスト |
-| bidList         | Array\<`Order`\> | Bid オーダーリスト |
-| totalAsk         |number  | total ask  |
-| totalBid         |number  | total bid  |
+| 名         | タイプ           | 説明                             |
+|------------|------------------|----------------------------------|
+| market     | string           | ex) KRW, BTC, USDT ...           |
+| coin       | string           | ex) BTC, ETH, XRP ...            |
+| marketCode | string           | ex) KRW-BTC, KRW-XRP ...         |
+| lastUpdate | `Date`           | このオブジェクトが更新された時刻  |
+| askList    | Array\<`Order`\> | Ask オーダーリスト               |
+| bidList    | Array\<`Order`\> | Bid オーダーリスト               |
+| totalAsk   | number           | total ask                        |
+| totalBid   | number           | total bid                        |
 
 ### Order クラス
 | 名     | タイプ   | 説明      |

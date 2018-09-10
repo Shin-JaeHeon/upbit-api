@@ -2,6 +2,7 @@ import Market from "./container/Market";
 import OrderBook from "./container/OrderBook";
 import Order from "./container/Order";
 import Trade from "./container/Trade";
+import {httpify} from "caseless";
 
 const request = require("request");
 
@@ -157,13 +158,12 @@ function ticks(market: string | Array<string>, count: number = 1, to?: string, c
       qs: {
         market: market.toString(),
         count: count,
-
       }
     };
     // @ts-ignore
-    if (to) options.to = to;
+    if (to) options.qs.to = to;
     // @ts-ignore
-    if (cursor) options.cursor = curosr;
+    if (cursor) options.qs.cursor = curosr;
     request(options, (error, response, body) => {
       if (error) reject(error);
       else {

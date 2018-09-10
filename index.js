@@ -162,10 +162,10 @@ function ticks(market, count = 1, to, cursor) {
         };
         // @ts-ignore
         if (to)
-            options.to = to;
+            options.qs.to = to;
         // @ts-ignore
         if (cursor)
-            options.cursor = curosr;
+            options.qs.cursor = curosr;
         request(options, (error, response, body) => {
             if (error)
                 reject(error);

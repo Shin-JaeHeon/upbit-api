@@ -19,9 +19,9 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 ## ticker(market)
 `Market` 오브젝트(KRW-BTC 같은 것을 일컫습니다.) 배열을 생성합니다.
 
-| 매개변수       | 타입                       | 설명                                 |
-|----------------|--------------------------- |-------------------------------------|
-| market         | string 또는 Array\<string\>  | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
+| 매개변수 | 타입                        | 설명                                  |
+|----------|-----------------------------|---------------------------------------|
+| market   | string 또는 Array\<string\> | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
 
 ### Market 클래스
 | 이름              | 타입   | 설명                               |
@@ -54,12 +54,12 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market` 오브젝트를 일정 `time`마다 업데이트 합니다.
 
-| 매개변수       | 타입                         | 설명                                   |
-|----------------|---------------------------   |---------------------------------------|
-| market         | `Market` 또는 Array\<Market\>  |  업데이트 될  `Market` 오브젝트 |
-| time           | number                       | 업데이트 주기 (밀리초) |
-| errorHandler   | function, (error) => any     | 에러 핸들러  |
-| callback   | function, (market) => any     |  선택사항, 오브젝트가 업데이트 될 때 호출됩니다. |
+| 매개변수     | 타입                          | 설명                                            |
+|--------------|-------------------------------|-------------------------------------------------|
+| market       | `Market` 또는 Array\<Market\> | 업데이트 될  `Market` 오브젝트                  |
+| time         | number                        | 업데이트 주기 (밀리초)                          |
+| errorHandler | function, (error) => any      | 에러 핸들러                                     |
+| callback     | function, (market) => any     | 선택사항, 오브젝트가 업데이트 될 때 호출됩니다. |
 
 ## OrderBook(string 또는 Array\<string\>)
 `OrderBook` 오브젝트 배열을 반환합니다.
@@ -69,22 +69,22 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | market         | string 또는 Array\<string\>  | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
 
 ### OrderBook class
-| 매개변수  |    타입        | 설명 |
-|----------------|------- |-------------|
-| market         | string | ex) KRW, BTC, USDT ... |
-| coin         | string | ex) BTC, ETH, XRP ... |
-| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
-| lastUpdate         | `Date` | 이 객체가 업데이트된 시간|
-| askList         | Array\<`Order`\> | Ask 오더 리스트 |
-| bidList         | Array\<`Order`\> | Bid 오더 리스트 |
-| totalAsk         |number  | 토탈 ask  |
-| totalBid         |number  | 토탈 bid  |
+| 매개변수   | 타입             | 설명                      |
+|------------|------------------|---------------------------|
+| market     | string           | ex) KRW, BTC, USDT ...    |
+| coin       | string           | ex) BTC, ETH, XRP ...     |
+| marketCode | string           | ex) KRW-BTC, KRW-XRP ...  |
+| lastUpdate | `Date`           | 이 객체가 업데이트된 시간 |
+| askList    | Array\<`Order`\> | Ask 오더 리스트           |
+| bidList    | Array\<`Order`\> | Bid 오더 리스트           |
+| totalAsk   | number           | 토탈 ask                  |
+| totalBid   | number           | 토탈 bid                  |
 
 ### Order class
-| 매개변수  |    타입        | 설명 |
-|----------------|------- |-------------|
-| price       | number | 가격|
-| size        | number | 주문량 |
+| 매개변수 | 타입   | 설명   |
+|----------|--------|--------|
+| price    | number | 가격   |
+| size     | number | 주문량 |
 
 ## autoOrderBookUpDate(orderBook, time , errorHandler, callback?)
 `OrderBook` 오브젝트를 일정 시간마다 업데이트 합니다.
@@ -99,24 +99,24 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 ## ticks(market)
 `Trade` 오브젝트 배열을 반환합니다.
 
-| 매개변수      | 타입                       | 설명                         |
-|----------------|--------------------------- |-------------------------------------|
-| params         | string 또는 Array\<string\>  | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
-| count          | number                     | count                               |
-| to             | string                     | HHmmss 또는 HH:mm:ss                  |
-| cursor         | number                     | sequential_id                       |
+| 매개변수 | 타입                        | 설명                                  |
+|----------|-----------------------------|---------------------------------------|
+| params   | string 또는 Array\<string\> | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
+| count    | number                      | count                                 |
+| to       | string                      | HHmmss 또는 HH:mm:ss                  |
+| cursor   | number                      | sequential_id                         |
 
 ### Trade class
-| 이름               | 타입    | 설명 |
-|--------------------|-------  |-------------|
-| market             | string  | ex) KRW, BTC, USDT ... |
-| coin               | string  | ex) BTC, ETH, XRP ... |
-| marketCode         | string  | ex) KRW-BTC, KRW-XRP ... |
+| 이름               | 타입    | 설명                      |
+|--------------------|---------|---------------------------|
+| market             | string  | ex) KRW, BTC, USDT ...    |
+| coin               | string  | ex) BTC, ETH, XRP ...     |
+| marketCode         | string  | ex) KRW-BTC, KRW-XRP ...  |
 | lastUpdate         | `Date`  | 이 객체가 업데이트된 시간 |
-| tradeTime          | `Date`  | 체결 시간 |
-| price              | number  | 체결 가격 |
-| volume             | number  | 체결 거래량  |
-| prev_closing_price | number  | 전일 종가 |
-| change_price       | number  | 변화량  |
-| isAsk              | boolean | 매도/매수  |
-| sequential_id      | number  | 체결 번호(Unique)  |
+| tradeTime          | `Date`  | 체결 시간                 |
+| price              | number  | 체결 가격                 |
+| volume             | number  | 체결 거래량               |
+| prev_closing_price | number  | 전일 종가                 |
+| change_price       | number  | 변화량                    |
+| isAsk              | boolean | 매도/매수                 |
+| sequential_id      | number  | 체결 번호(Unique)         |
