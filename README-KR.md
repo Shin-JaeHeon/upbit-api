@@ -48,7 +48,7 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | high52wPrice      | number | 52주 신고가                        |
 | high52wDate       | `Date` | 52주 신고가 달성일                 |
 | low52wPrice       | number | 52주 신저가                        |
-| lowhigh52wDate    | `Date` | 52주 신저가 달성일                 |
+| low52wDate    | `Date` | 52주 신저가 달성일                 |
 | lastUpdate        | `Date` | 이 객체가 업데이트된 시간          |
 
 ## autoMarketUpdate(market, time , errorHandler, callback?)
@@ -120,3 +120,30 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | change_price       | number  | 변화량                    |
 | isAsk              | boolean | 매도/매수                 |
 | sequential_id      | number  | 체결 번호(Unique)         |
+
+## candlesMinutes(market, unit?, count?, to?)
+Create `Candle` object arrays.
+
+| Parameter      | Type                       | Description                         |
+|----------------|--------------------------- |-------------------------------------|
+| market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+| unit           | number                     |  1, 3, 5, 15, 10, 30, 60, 240       |
+| count          | number                     | count                               |
+| to             | string                     | yyyy-MM-dd'T'HH:mm:ssXXX            |
+
+### Candle class
+| Name         | Type   | Description                                               |
+|-------------------|--------|-----------------------------------------------------------|
+| market            | string | ex) KRW, BTC, USDT ...                                    |
+| coin              | string | ex) BTC, ETH, XRP ...                                     |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...                                  |
+| timestamp         | number | The time at which the last tick was stored in the candle. |
+| candleDateTimeUTC | `Date` | Standard time of the candle (UTC basis)                   |
+| candleDateTimeKST | `Date` | Standard time of the candle (KST basis)                   |
+| open              | number | Market value                                              |
+| high              | number | Highest price                                             |
+| low               | number | Lowest price                                              |
+| accTradePrice     | number | Candle's accTradePrice                                    |
+| accTradeVolume    | number | Candle's cumulative transaction amount                    |
+| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
+| lastUpdate        | `Date` | The time when this object updated                         |

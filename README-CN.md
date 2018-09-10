@@ -45,7 +45,7 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 | high52wPrice      | number | 第52话新的高价                     |
 | high52wDate       | `Date` | 第52话新的高价成就日               |
 | low52wPrice       | number | 第52话新的低价                     |
-| lowhigh52wDate    | `Date` | 第52话新的低价成就日               |
+| low52wDate    | `Date` | 第52话新的低价成就日               |
 | lastUpdate        | `Date` | 该对象更新的时间                   |
 
 ## autoMarketUpdate(market, time , errorHandler, callback?)
@@ -117,3 +117,30 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 | change_price       | number  | 合同价格 - 前一日收盘价  |
 | isAsk              | boolean | 合同类型  |
 | sequential_id      | number  | 合同号(Unique)  |
+
+## candlesMinutes(market, unit?, count?, to?)
+Create `Candle` object arrays.
+
+| Parameter      | Type                       | Description                         |
+|----------------|--------------------------- |-------------------------------------|
+| market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+| unit           | number                     |  1, 3, 5, 15, 10, 30, 60, 240       |
+| count          | number                     | count                               |
+| to             | string                     | yyyy-MM-dd'T'HH:mm:ssXXX            |
+
+### Candle class
+| Name         | Type   | Description                                               |
+|-------------------|--------|-----------------------------------------------------------|
+| market            | string | ex) KRW, BTC, USDT ...                                    |
+| coin              | string | ex) BTC, ETH, XRP ...                                     |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...                                  |
+| timestamp         | number | The time at which the last tick was stored in the candle. |
+| candleDateTimeUTC | `Date` | Standard time of the candle (UTC basis)                   |
+| candleDateTimeKST | `Date` | Standard time of the candle (KST basis)                   |
+| open              | number | Market value                                              |
+| high              | number | Highest price                                             |
+| low               | number | Lowest price                                              |
+| accTradePrice     | number | Candle's accTradePrice                                    |
+| accTradeVolume    | number | Candle's cumulative transaction amount                    |
+| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
+| lastUpdate        | `Date` | The time when this object updated                         |

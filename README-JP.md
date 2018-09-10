@@ -47,7 +47,7 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | high52wPrice      | number | 52週の新しい高価                     |
 | high52wDate       | `Date` | 52注意新しい高価達成日               |
 | low52wPrice       | number | 52注意新しい低価格                   |
-| lowhigh52wDate    | `Date` | 52注意新しい低価格達成日             |
+| low52wDate    | `Date` | 52注意新しい低価格達成日             |
 | lastUpdate        | `Date` | このオブジェクトが更新された時刻     |
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market`のオブジェクトを一定時間ごとにアップデートします。
@@ -118,5 +118,32 @@ Create new `Trade` object arrays.
 | change_price       | number  | 変化量  |
 | isAsk              | boolean | 罵倒/買収 |
 | sequential_id      | number  | 締結番号(Unique)  |
+
+## candlesMinutes(market, unit?, count?, to?)
+Create `Candle` object arrays.
+
+| Parameter      | Type                       | Description                         |
+|----------------|--------------------------- |-------------------------------------|
+| market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+| unit           | number                     |  1, 3, 5, 15, 10, 30, 60, 240       |
+| count          | number                     | count                               |
+| to             | string                     | yyyy-MM-dd'T'HH:mm:ssXXX            |
+
+### Candle class
+| Name         | Type   | Description                                               |
+|-------------------|--------|-----------------------------------------------------------|
+| market            | string | ex) KRW, BTC, USDT ...                                    |
+| coin              | string | ex) BTC, ETH, XRP ...                                     |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...                                  |
+| timestamp         | number | The time at which the last tick was stored in the candle. |
+| candleDateTimeUTC | `Date` | Standard time of the candle (UTC basis)                   |
+| candleDateTimeKST | `Date` | Standard time of the candle (KST basis)                   |
+| open              | number | Market value                                              |
+| high              | number | Highest price                                             |
+| low               | number | Lowest price                                              |
+| accTradePrice     | number | Candle's accTradePrice                                    |
+| accTradeVolume    | number | Candle's cumulative transaction amount                    |
+| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
+| lastUpdate        | `Date` | The time when this object updated                         |
 
 翻訳に間違いがあれば、PRお願いします。

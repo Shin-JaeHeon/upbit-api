@@ -4,6 +4,7 @@ const Market_1 = require("./container/Market");
 const OrderBook_1 = require("./container/OrderBook");
 const Order_1 = require("./container/Order");
 const Trade_1 = require("./container/Trade");
+const Candle_1 = require("./container/Candle");
 const request = require("request");
 function setMarketData(market, v) {
     market.tradeTime = new Date(v['trade_timestamp']);
@@ -169,15 +170,45 @@ function ticks(market, count = 1, to, cursor) {
         request(options, (error, response, body) => {
             if (error)
                 reject(error);
-            else {
-                body = JSON.parse(body.toString());
-                resolve(body.map(v => {
-                    const trade = new Trade_1.default(v['market'].split('-')[0], v['market'].split('-')[1]);
-                    setTradeData(v, trade);
-                    return trade;
-                }));
-            }
+            else
+                resolve(JSON.parse(body.toString()).map(v => setTradeData(v, new Trade_1.default(v['market'].split('-')[0], v['market'].split('-')[1]))));
         });
     });
 }
-exports.default = { ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks };
+function setCandle(v, candle) {
+    candle.unit = v.unit;
+    candle.accTradePrice = v.candle_acc_trade_volume;
+    candle.accTradePrice = v.candle_acc_trade_price;
+    candle.price = v['trade_price'];
+    candle.high = v['high_price'];
+    candle.low = v['low_price'];
+    candle.open = v['opening_price'];
+    candle.candleDateTimeUTC = new Date(`${v['candle_date_time_utc']}+0000`);
+    candle.candleDateTimeKST = new Date(`${v['candle_date_time_kst']}+0900`);
+    candle.timestamp = v['timestamp'];
+    return candle;
+}
+function candlesMinutes(market, unit, count, to) {
+    return new Promise((resolve, reject) => {
+        const options = {
+            method: 'GET',
+            url: `https://api.upbit.com/v1/candles/minutes/${unit}`,
+            qs: {
+                market: market.toString(),
+            }
+        };
+        // @ts-ignore
+        if (count)
+            options.qs.count = count;
+        // @ts-ignore
+        if (to)
+            options.qs.to = to;
+        request(options, (error, response, body) => {
+            if (error)
+                reject(error);
+            else
+                resolve(JSON.parse(body.toString()).map(v => setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]))));
+        });
+    });
+}
+exports.default = { ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes };

@@ -13,3 +13,6 @@ index_1.default.orderBook("KRW-XRP").then(v => {
 index_1.default.ticks('KRW-XRP').then(tradeList => {
     tradeList.forEach(v => console.log(v));
 }).catch(err => console.log(err));
+index_1.default.candlesMinutes('KRW-XRP', 1).then(tradeList => {
+    tradeList.forEach(v => console.log(v));
+}).catch(err => console.log(err));

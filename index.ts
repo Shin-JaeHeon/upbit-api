@@ -3,6 +3,7 @@ import OrderBook from "./container/OrderBook";
 import Order from "./container/Order";
 import Trade from "./container/Trade";
 import {httpify} from "caseless";
+import Candle from "./container/Candle";
 
 const request = require("request");
 
@@ -166,16 +167,46 @@ function ticks(market: string | Array<string>, count: number = 1, to?: string, c
     if (cursor) options.qs.cursor = curosr;
     request(options, (error, response, body) => {
       if (error) reject(error);
-      else {
-        body = JSON.parse(body.toString());
-        resolve(body.map(v => {
-          const trade = new Trade(v['market'].split('-')[0], v['market'].split('-')[1]);
-          setTradeData(v, trade);
-          return trade;
-        }));
-      }
+      else resolve(JSON.parse(body.toString()).map(v =>
+        setTradeData(v, new Trade(v['market'].split('-')[0], v['market'].split('-')[1]))));
+
     });
   });
 }
 
-export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks}
+function setCandle(v, candle: Candle): Candle {
+  candle.unit = v.unit;
+  candle.accTradePrice = v.candle_acc_trade_volume;
+  candle.accTradePrice = v.candle_acc_trade_price;
+  candle.price = v['trade_price'];
+  candle.high = v['high_price'];
+  candle.low = v['low_price'];
+  candle.open = v['opening_price'];
+  candle.candleDateTimeUTC = new Date(`${v['candle_date_time_utc']}+0000`);
+  candle.candleDateTimeKST = new Date(`${v['candle_date_time_kst']}+0900`);
+  candle.timestamp = v['timestamp'];
+  return candle;
+}
+
+function candlesMinutes(market: string | Array<string>, unit: number, count?: number, to?: string): Promise<Array<Candle>> {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: 'GET',
+      url: `https://api.upbit.com/v1/candles/minutes/${unit}`,
+      qs: {
+        market: market.toString(),
+      }
+    };
+    // @ts-ignore
+    if (count) options.qs.count = count;
+    // @ts-ignore
+    if (to) options.qs.to = to;
+    request(options, (error, response, body) => {
+      if (error) reject(error);
+      else resolve(JSON.parse(body.toString()).map(v =>
+        setCandle(v, new Candle(v['market'].split('-')[0], v['market'].split('-')[1]))));
+    });
+  });
+}
+
+export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes}

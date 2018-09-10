@@ -46,7 +46,7 @@ Create new `Market` object arrays.
 | high52wPrice      | number | 52 Weeks New Highest Price                 |
 | high52wDate       | `Date` | 52 Weeks New Highest Price'Date            |
 | low52wPrice       | number | 52 Weeks New Lowest Price                  |
-| lowhigh52wDate    | `Date` | 52 Weeks New Lowest Price's Date           |
+| low52wDate    | `Date` | 52 Weeks New Lowest Price's Date           |
 | lastUpdate        | `Date` | The time when this object updated          |
 
 ## autoMarketUpdate(market, time , errorHandler, callback?)
@@ -96,12 +96,12 @@ Updates object `OrderBook` every specified `time` time.
 | errorHandler   | function, (error) => any     | error handler  |
 | callback   | function, (orderBook) => any     |  optional, this function called when object updated.  |
 
-## ticks(market)
+## ticks(market, count?, to?, cursor?)
 Create new `Trade` object arrays.
 
 | Parameter      | Type                       | Description                         |
 |----------------|--------------------------- |-------------------------------------|
-| params         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+| market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
 | count          | number                     | count                               |
 | to             | string                     | HHmmss or HH:mm:ss                  |
 | cursor         | number                     | sequential_id                       |
@@ -120,3 +120,30 @@ Create new `Trade` object arrays.
 | change_price       | number  | price - prev_closing_price  |
 | isAsk              | boolean | Trade type  |
 | sequential_id      | number  | Transaction Number(Unique)  |
+
+## candlesMinutes(market, unit?, count?, to?)
+Create `Candle` object arrays.
+
+| Parameter      | Type                       | Description                         |
+|----------------|--------------------------- |-------------------------------------|
+| market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
+| unit           | number                     |  1, 3, 5, 15, 10, 30, 60, 240       |
+| count          | number                     | count                               |
+| to             | string                     | yyyy-MM-dd'T'HH:mm:ssXXX            |
+
+### Candle class
+| Name         | Type   | Description                                               |
+|-------------------|--------|-----------------------------------------------------------|
+| market            | string | ex) KRW, BTC, USDT ...                                    |
+| coin              | string | ex) BTC, ETH, XRP ...                                     |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...                                  |
+| timestamp         | number | The time at which the last tick was stored in the candle. |
+| candleDateTimeUTC | `Date` | Standard time of the candle (UTC basis)                   |
+| candleDateTimeKST | `Date` | Standard time of the candle (KST basis)                   |
+| open              | number | Market value                                              |
+| high              | number | Highest price                                             |
+| low               | number | Lowest price                                              |
+| accTradePrice     | number | Candle's accTradePrice                                    |
+| accTradeVolume    | number | Candle's cumulative transaction amount                    |
+| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
+| lastUpdate        | `Date` | The time when this object updated                         |
