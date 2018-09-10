@@ -24,11 +24,32 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | market         | string 또는 Array\<string\>  | 'KRW-BTC' 또는 ['KRW-BTC', 'KRW-XRP'] |
 
 ### Market 클래스
-| 이름     | 타입   | 설명 |
-|----------------|------- |-------------|
-| market         | string | ex) KRW, BTC, USDT ... |
-| coin         | string | ex) BTC, ETH, XRP ... |
-| marketCode         | string | ex) KRW-BTC, KRW-XRP ... |
+| 이름              | 타입   | 설명                               |
+|-------------------|--------|------------------------------------|
+| market            | string | ex) KRW, BTC, USDT ...             |
+| coin              | string | ex) BTC, ETH, XRP ...              |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...           |
+| tradeTime         | `Date` | 거래 시간                           |
+| price             | number | 가격                               |
+| open              | number | 시가                               |
+| high              | number | 고가                               |
+| low               | number | 저가                               |
+| prevClose         | number | 전일 종가                          |
+| change            | number | EVEN(보합), RISE(상승), FALL(하락) |
+| changePrice       | number | 변화액의 절대값                    |
+| changeRate        | number | 변화율의 절대값                    |
+| signedChangePrice | number | 부호가 있는 변화액                 |
+| signedChangeRate  | number | 부호가 있는 변화율                 |
+| tradeVolume       | number | 가장 최근 거래량                   |
+| accTradePrice     | number | 누적 거래대금(UTC 0시 기준)        |
+| accTradePrice24   | number | 24시간 누적 거래대금               |
+| accTradeVolume    | number | 누적 거래량(UTC 0시 기준)          |
+| accTradeVolume24  | number | 24시간 누적 거래대금               |
+| high52wPrice      | number | 52주 신고가                        |
+| high52wDate       | `Date` | 52주 신고가 달성일                 |
+| low52wPrice       | number | 52주 신저가                        |
+| lowhigh52wDate    | `Date` | 52주 신저가 달성일                 |
+| lastUpdate        | `Date` | 이 객체가 업데이트된 시간          |
 
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market` 오브젝트를 일정 `time`마다 업데이트 합니다.
