@@ -12,7 +12,6 @@ export default class Candle {
   private _low: number;
   private _accTradePrice: number;
   private _accTradeVolume: number;
-  private _unit: number;
   private _lastUpdate: Date;
 
   constructor(market, coin) {
@@ -111,13 +110,5 @@ export default class Candle {
 
   set lastUpdate(value: Date) {
     this._lastUpdate = value;
-  }
-
-  get unit(): number {
-    return this._unit;
-  }
-
-  set unit(value: number) {
-    this._unit = value;
   }
 }

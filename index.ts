@@ -4,6 +4,7 @@ import Order from "./container/Order";
 import Trade from "./container/Trade";
 import {httpify} from "caseless";
 import Candle from "./container/Candle";
+import MinutesCandle from "./container/MinutesCandle";
 
 const request = require("request");
 
@@ -174,8 +175,7 @@ function ticks(market: string | Array<string>, count: number = 1, to?: string, c
   });
 }
 
-function setCandle(v, candle: Candle): Candle {
-  candle.unit = v.unit;
+function setCandle(v, candle: Candle, type = 0): Candle {
   candle.accTradePrice = v.candle_acc_trade_volume;
   candle.accTradePrice = v.candle_acc_trade_price;
   candle.price = v['trade_price'];
@@ -185,9 +185,22 @@ function setCandle(v, candle: Candle): Candle {
   candle.candleDateTimeUTC = new Date(`${v['candle_date_time_utc']}+0000`);
   candle.candleDateTimeKST = new Date(`${v['candle_date_time_kst']}+0900`);
   candle.timestamp = v['timestamp'];
+  if (type === 0) setMinutesCandle(v, <MinutesCandle> candle);
   return candle;
 }
 
+function setMinutesCandle(v, candle: MinutesCandle): MinutesCandle {
+  candle.unit = v.unit;
+  return candle;
+}
+
+/**
+ * get candles
+ * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
+ * @param unit 1, 3, 5, 15, 10, 30, 60, 240
+ * @param count count of candles
+ * @param to yyyy-MM-dd'T'HH:mm:ssXXX
+ */
 function candlesMinutes(market: string | Array<string>, unit: number, count?: number, to?: string): Promise<Array<Candle>> {
   return new Promise((resolve, reject) => {
     const options = {

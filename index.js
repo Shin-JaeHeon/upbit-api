@@ -175,8 +175,7 @@ function ticks(market, count = 1, to, cursor) {
         });
     });
 }
-function setCandle(v, candle) {
-    candle.unit = v.unit;
+function setCandle(v, candle, type = 0) {
     candle.accTradePrice = v.candle_acc_trade_volume;
     candle.accTradePrice = v.candle_acc_trade_price;
     candle.price = v['trade_price'];
@@ -186,8 +185,21 @@ function setCandle(v, candle) {
     candle.candleDateTimeUTC = new Date(`${v['candle_date_time_utc']}+0000`);
     candle.candleDateTimeKST = new Date(`${v['candle_date_time_kst']}+0900`);
     candle.timestamp = v['timestamp'];
+    if (type === 0)
+        setMinutesCandle(v, candle);
     return candle;
 }
+function setMinutesCandle(v, candle) {
+    candle.unit = v.unit;
+    return candle;
+}
+/**
+ * get candles
+ * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
+ * @param unit 1, 3, 5, 15, 10, 30, 60, 240
+ * @param count count of candles
+ * @param to yyyy-MM-dd'T'HH:mm:ssXXX
+ */
 function candlesMinutes(market, unit, count, to) {
     return new Promise((resolve, reject) => {
         const options = {
