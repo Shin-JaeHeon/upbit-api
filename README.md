@@ -156,3 +156,28 @@ List of markets that can be traded at Upbit.
 | market       | string | Market information provided by Upbit, ex) BTC-XRP |
 | korean_name  | string | Korean name ex) 비트코인                          |
 | english_name | string | English name ex) Bitcoin                          |
+
+
+## Coverage Table
+| Method | Upbit                                         | upbit-api   | upbit-api version           |
+|--------|-----------------------------------------------|-------------|-----------------------------|
+| GET    | https://api.upbit.com/v1/accounts             | Unsupported | At least 0.11.0             |
+| GET    | https://api.upbit.com/v1/orders/chance        | Unsupported | At least 0.12.0             |
+| GET    | https://api.upbit.com/v1/order                | Unsupported | At least 0.11.0             |
+| GET    | https://api.upbit.com/v1/orders               | Unsupported | At least 0.11.0             |
+| POST   | https://api.upbit.com/v1/orders               | Unsupported | At least 0.11.0             |
+| DELETE | https://api.upbit.com/v1/order                | Unsupported | At least 0.11.0             |
+| GET    | https://api.upbit.com/v1/withdraws            | Unsupported | At least 0.11.0             |
+| GET    | https://api.upbit.com/v1/withdraw             | Unsupported | At least 0.11.0             |
+| GET    | https://api.upbit.com/v1/withdraws/chance     | Unsupported | At least 0.11.0             |
+| POST   | https://api.upbit.com/v1/withdraws/coin       | Unsupported | At least 0.11.0             |
+| POST   | https://api.upbit.com/v1/withdraws/krw        | Unsupported | At least 0.11.0             |
+| GET    | https://api.upbit.com/v1/deposits             | Unsupported | At least 0.11.0             |
+| GET    | https://api.upbit.com/v1/market/all           | Supported   | 0.7.0+                      |
+| GET    | https://api.upbit.com/v1/candles/minutes/unit | Supported   | 0.6.0+                      |
+| GET    | https://api.upbit.com/v1/candles/days         | Unsupported | Will be supported at 0.8.0  |
+| GET    | https://api.upbit.com/v1/candles/weeks        | Unsupported | Will be supported at 0.9.0  |
+| GET    | https://api.upbit.com/v1/candles/months       | Unsupported | Will be supported at 0.10.0 |
+| GET    | https://api.upbit.com/v1/trades/ticks         | Supported   | 0.5.0+                      |
+| GET    | https://api.upbit.com/v1/ticker               | Supported   | 0.0.1+                      |
+| GET    | https://api.upbit.com/v1/orderbook            | Supported   | 0.2.0+                      |
