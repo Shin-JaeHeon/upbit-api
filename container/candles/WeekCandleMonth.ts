@@ -2,14 +2,14 @@ import Candle from '../Candle';
 
 export default class WeekMonthCandle extends Candle {
 
-  private _firstDayOfPeriod: number;
+  private _firstDayOfPeriod: string;
 
 
-  get firstDayOfPeriod(): number {
+  get firstDayOfPeriod(): string {
     return this._firstDayOfPeriod;
   }
 
-  set firstDayOfPeriod(value: number) {
+  set firstDayOfPeriod(value: string) {
     this._firstDayOfPeriod = value;
   }
 }

@@ -189,10 +189,17 @@ function setCandle(v, candle, type = 0) {
         setMinutesCandle(v, candle);
     if (type === 1)
         setDayCandle(v, candle);
+    if (type === 2)
+        setWeekMonthCandle(v, candle);
     return candle;
 }
 function setMinutesCandle(v, candle) {
     candle.unit = v.unit;
+    return candle;
+}
+function setWeekMonthCandle(v, candle) {
+    console.log(v);
+    candle.firstDayOfPeriod = v.first_day_of_period;
     return candle;
 }
 function setDayCandle(v, candle) {
@@ -265,6 +272,64 @@ function candlesDay(market, count, to, convertingPriceUnit) {
         });
     });
 }
+/**
+ * get weeks candles
+ * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
+ * @param count count of candles
+ * @param to yyyy-MM-dd'T'HH:mm:ssXXX
+ */
+function candlesWeek(market, count, to) {
+    return new Promise((resolve, reject) => {
+        const options = {
+            method: 'GET',
+            url: `https://api.upbit.com/v1/candles/weeks`,
+            qs: {
+                market: market.toString(),
+            }
+        };
+        // @ts-ignore
+        if (count)
+            options.qs.count = count;
+        // @ts-ignore
+        if (to)
+            options.qs.to = to;
+        request(options, (error, response, body) => {
+            if (error)
+                reject(error);
+            else
+                resolve(JSON.parse(body.toString()).map(v => setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 2)));
+        });
+    });
+}
+/**
+ * get months candles
+ * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
+ * @param count count of candles
+ * @param to yyyy-MM-dd'T'HH:mm:ssXXX
+ */
+function candlesMonth(market, count, to) {
+    return new Promise((resolve, reject) => {
+        const options = {
+            method: 'GET',
+            url: `https://api.upbit.com/v1/candles/months`,
+            qs: {
+                market: market.toString(),
+            }
+        };
+        // @ts-ignore
+        if (count)
+            options.qs.count = count;
+        // @ts-ignore
+        if (to)
+            options.qs.to = to;
+        request(options, (error, response, body) => {
+            if (error)
+                reject(error);
+            else
+                resolve(JSON.parse(body.toString()).map(v => setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 2)));
+        });
+    });
+}
 function allMarket() {
     return new Promise((resolve, reject) => {
         const options = {
@@ -279,4 +344,15 @@ function allMarket() {
         });
     });
 }
-exports.default = { ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes, candlesDay, allMarket };
+exports.default = {
+    ticker,
+    autoMarketUpdate,
+    orderBook,
+    autoOrderBookUpdate,
+    ticks,
+    candlesMinutes,
+    candlesDay,
+    candlesWeek,
+    candlesMonth,
+    allMarket
+};

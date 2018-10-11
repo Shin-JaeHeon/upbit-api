@@ -12,6 +12,32 @@ This api will support the Restful API and Websocket API.
 
 
 It was created with Typescript and compiled into es2017.
+## Coverage Table
+The **§** symbol includes auto-update:
+`autoMarketUpdate` or `autoOrderBookUpdate`
+
+| Method | Upbit                 | upbit-api      | version         |
+|--------|-----------------------|----------------|-----------------|
+| GET    | /ticker               | ticker **§**   | 0.0.1+          |
+| GET    | /orderbook            | orderBook **§**| 0.2.0+          |
+| GET    | /trades/ticks         | ticks          | 0.5.0+          |
+| GET    | /candles/minutes/unit | candlesMinutes | 0.6.0+          |
+| GET    | /market/all           | allMarket      | 0.7.0+          |
+| GET    | /candles/days         | candlesDay     | 0.9.0+          |
+| GET    | /candles/weeks        | candlesWeek    | 0.10.0+         |
+| GET    | /candles/months       | candlesMonth   | 0.10.0+         |
+| GET    | /accounts             | Unsupported    | At least 0.11.0 |
+| GET    | /orders/chance        | Unsupported    | At least 0.11.0 |
+| GET    | /order                | Unsupported    | At least 0.11.0 |
+| GET    | /orders               | Unsupported    | At least 0.11.0 |
+| POST   | /orders               | Unsupported    | At least 0.11.0 |
+| DELETE | /order                | Unsupported    | At least 0.11.0 |
+| GET    | /withdraws            | Unsupported    | At least 0.11.0 |
+| GET    | /withdraw             | Unsupported    | At least 0.11.0 |
+| GET    | /withdraws/chance     | Unsupported    | At least 0.11.0 |
+| POST   | /withdraws/coin       | Unsupported    | At least 0.11.0 |
+| POST   | /withdraws/krw        | Unsupported    | At least 0.11.0 |
+| GET    | /deposits             | Unsupported    | At least 0.11.0 |
 
 ## ticker(market)
 Create new `Market` object arrays.
@@ -167,28 +193,3 @@ List of markets that can be traded at Upbit.
 | market       | string | Market information provided by Upbit, ex) BTC-XRP |
 | korean_name  | string | Korean name ex) 비트코인                          |
 | english_name | string | English name ex) Bitcoin                          |
-
-
-## Coverage Table
-| Method | Upbit                 | upbit-api   | upbit-api version           |
-|--------|-----------------------|-------------|-----------------------------|
-| GET    | /accounts             | Unsupported | At least 0.12.0             |
-| GET    | /orders/chance        | Unsupported | At least 0.12.0             |
-| GET    | /order                | Unsupported | At least 0.12.0             |
-| GET    | /orders               | Unsupported | At least 0.12.0             |
-| POST   | /orders               | Unsupported | At least 0.12.0             |
-| DELETE | /order                | Unsupported | At least 0.12.0             |
-| GET    | /withdraws            | Unsupported | At least 0.12.0             |
-| GET    | /withdraw             | Unsupported | At least 0.12.0             |
-| GET    | /withdraws/chance     | Unsupported | At least 0.12.0             |
-| POST   | /withdraws/coin       | Unsupported | At least 0.12.0             |
-| POST   | /withdraws/krw        | Unsupported | At least 0.12.0             |
-| GET    | /deposits             | Unsupported | At least 0.12.0             |
-| GET    | /market/all           | Supported   | 0.7.0+                      |
-| GET    | /candles/minutes/unit | Supported   | 0.6.0+                      |
-| GET    | /candles/days         | Supported   | 0.9.0+                      |
-| GET    | /candles/weeks        | Unsupported | Will be supported at 0.10.0  |
-| GET    | /candles/months       | Unsupported | Will be supported at 0.11.0 |
-| GET    | /trades/ticks         | Supported   | 0.5.0+                      |
-| GET    | /ticker               | Supported   | 0.0.1+                      |
-| GET    | /orderbook            | Supported   | 0.2.0+                      |

@@ -1,6 +1,4 @@
 export default class Candle {
-
-
   private readonly _market: string;
   private readonly _coin: string;
   private _timestamp: number;

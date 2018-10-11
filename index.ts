@@ -6,6 +6,7 @@ import {httpify} from "caseless";
 import Candle from "./container/Candle";
 import MinutesCandle from "./container/candles/MinutesCandle";
 import DayCandle from "./container/candles/DayCandle";
+import WeekMonthCandle from "./container/candles/WeekCandleMonth";
 
 const request = require("request");
 
@@ -188,11 +189,18 @@ function setCandle(v, candle: Candle, type = 0): Candle {
   candle.timestamp = v['timestamp'];
   if (type === 0) setMinutesCandle(v, <MinutesCandle> candle);
   if (type === 1) setDayCandle(v, <DayCandle> candle);
+  if (type === 2) setWeekMonthCandle(v, <WeekMonthCandle> candle);
   return candle;
 }
 
 function setMinutesCandle(v, candle: MinutesCandle): MinutesCandle {
   candle.unit = v.unit;
+  return candle;
+}
+
+function setWeekMonthCandle(v, candle: WeekMonthCandle): WeekMonthCandle {
+  console.log(v);
+  candle.firstDayOfPeriod = v.first_day_of_period;
   return candle;
 }
 
@@ -262,6 +270,60 @@ function candlesDay(market: string | Array<string>, count?: number, to?: string,
   });
 }
 
+/**
+ * get weeks candles
+ * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
+ * @param count count of candles
+ * @param to yyyy-MM-dd'T'HH:mm:ssXXX
+ */
+function candlesWeek(market: string | Array<string>, count?: number, to?: string): Promise<Array<DayCandle>> {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: 'GET',
+      url: `https://api.upbit.com/v1/candles/weeks`,
+      qs: {
+        market: market.toString(),
+      }
+    };
+    // @ts-ignore
+    if (count) options.qs.count = count;
+    // @ts-ignore
+    if (to) options.qs.to = to;
+    request(options, (error, response, body) => {
+      if (error) reject(error);
+      else resolve(JSON.parse(body.toString()).map(v =>
+        setCandle(v, new Candle(v['market'].split('-')[0], v['market'].split('-')[1]), 2)));
+    });
+  });
+}
+
+/**
+ * get months candles
+ * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
+ * @param count count of candles
+ * @param to yyyy-MM-dd'T'HH:mm:ssXXX
+ */
+function candlesMonth(market: string | Array<string>, count?: number, to?: string): Promise<Array<DayCandle>> {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: 'GET',
+      url: `https://api.upbit.com/v1/candles/months`,
+      qs: {
+        market: market.toString(),
+      }
+    };
+    // @ts-ignore
+    if (count) options.qs.count = count;
+    // @ts-ignore
+    if (to) options.qs.to = to;
+    request(options, (error, response, body) => {
+      if (error) reject(error);
+      else resolve(JSON.parse(body.toString()).map(v =>
+        setCandle(v, new Candle(v['market'].split('-')[0], v['market'].split('-')[1]), 2)));
+    });
+  });
+}
+
 function allMarket() {
   return new Promise((resolve, reject) => {
     const options = {
@@ -275,4 +337,15 @@ function allMarket() {
   });
 }
 
-export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes, candlesDay, allMarket}
+export default {
+  ticker,
+  autoMarketUpdate,
+  orderBook,
+  autoOrderBookUpdate,
+  ticks,
+  candlesMinutes,
+  candlesDay,
+  candlesWeek,
+  candlesMonth,
+  allMarket
+};
