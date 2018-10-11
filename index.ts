@@ -209,4 +209,17 @@ function candlesMinutes(market: string | Array<string>, unit: number, count?: nu
   });
 }
 
-export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes}
+function allMarket() {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: 'GET',
+      url: `https://api.upbit.com/v1/market/all`
+    };
+    request(options, (error, response, body) => {
+      if (error) reject(error);
+      else resolve(JSON.parse(body.toString()));
+    });
+  });
+}
+
+export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes, allMarket}

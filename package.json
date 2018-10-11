@@ -1,6 +1,6 @@
 {
   "name": "upbit-api",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "This is an API that makes Upbit OpenAPI easy to use.",
   "main": "index.js",
   "author": {
@@ -18,8 +18,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "request": "^2.83.0",
-    "ws": "^5.2.1"
+    "request": "2.88.0",
+    "ws": "6.1.0"
   },
   "devDependencies": {
     "@types/node": "^10.5.1"

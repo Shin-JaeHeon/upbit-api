@@ -147,3 +147,12 @@ Create `Candle` object arrays.
 | accTradeVolume    | number | Candle's cumulative transaction amount                    |
 | unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 | lastUpdate        | `Date` | The time when this object updated                         |
+
+## allMarket()
+List of markets that can be traded at Upbit.
+
+| Name         | Type   | Description                                       |
+|--------------|--------|---------------------------------------------------|
+| market       | string | Market information provided by Upbit, ex) BTC-XRP |
+| korean_name  | string | Korean name ex) 비트코인                          |
+| english_name | string | English name ex) Bitcoin                          |

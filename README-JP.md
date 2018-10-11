@@ -95,7 +95,7 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | callback   | function, (orderBook) => any     |  選択事項、オブジェクトが更新されときに呼び出されます。 |
 
 ## ticks(market)
-Create new `Trade` object arrays.
+`Trade`の配列を生成します。
 
 | パラメータ     | タイプ                      | 説明                                |
 |----------------|--------------------------- |-------------------------------------|
@@ -105,7 +105,7 @@ Create new `Trade` object arrays.
 | cursor         | number                     | sequential_id                       |
 
 ### Trade class
-| 名               | Type   | Description |
+| 名     | タイプ   | 説明      |
 |--------------------|-------  |-------------|
 | market             | string  | ex) KRW, BTC, USDT ... |
 | coin               | string  | ex) BTC, ETH, XRP ... |
@@ -120,9 +120,9 @@ Create new `Trade` object arrays.
 | sequential_id      | number  | 締結番号(Unique)  |
 
 ## candlesMinutes(market, unit?, count?, to?)
-Create `Candle` object arrays.
+`Candle`の配列を生成します。
 
-| Parameter      | Type                       | Description                         |
+| パラメータ     | タイプ                      | 説明                                |
 |----------------|--------------------------- |-------------------------------------|
 | market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
 | unit           | number                     |  1, 3, 5, 15, 10, 30, 60, 240       |
@@ -130,7 +130,7 @@ Create `Candle` object arrays.
 | to             | string                     | yyyy-MM-dd'T'HH:mm:ssXXX            |
 
 ### Candle class
-| Name         | Type   | Description                                               |
+| 名     | タイプ   | 説明      |
 |-------------------|--------|-----------------------------------------------------------|
 | market            | string | ex) KRW, BTC, USDT ...                                    |
 | coin              | string | ex) BTC, ETH, XRP ...                                     |
@@ -145,5 +145,15 @@ Create `Candle` object arrays.
 | accTradeVolume    | number | Candle's cumulative transaction amount                    |
 | unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 | lastUpdate        | `Date` | The time when this object updated                         |
+
+## allMarket()
+List of markets that can be traded at Upbit.
+パラメータはありせん。
+
+| 名     | タイプ   | 説明      |
+|--------------|--------|---------------------------------------------------|
+| market       | string | Market information provided by Upbit, ex) BTC-XRP |
+| korean_name  | string | Korean name ex) 비트코인                          |
+| english_name | string | English name ex) Bitcoin                          |
 
 翻訳に間違いがあれば、PRお願いします。

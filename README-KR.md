@@ -122,7 +122,7 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | sequential_id      | number  | 체결 번호(Unique)         |
 
 ## candlesMinutes(market, unit?, count?, to?)
-Create `Candle` object arrays.
+`Candle` 오브젝트 배열을 반환합니다.
 
 | Parameter      | Type                       | Description                         |
 |----------------|--------------------------- |-------------------------------------|
@@ -147,3 +147,14 @@ Create `Candle` object arrays.
 | accTradeVolume    | number | Candle's cumulative transaction amount                    |
 | unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 | lastUpdate        | `Date` | The time when this object updated                         |
+
+## allMarket()
+업비트에서 거래 가능한 마켓 목록
+
+매개변수가 없습니다.
+
+| 이름         | 타입    | 설명                                             |
+|--------------|--------|---------------------------------------------------|
+| market       | string | 업비트에서 제공하는 마켓 정보 예) BTC-XRP          |
+| korean_name  | string | 한국어 이름 예) 비트코인                           |
+| english_name | string | 영어 이름 예) Bitcoin                             |
