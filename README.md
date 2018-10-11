@@ -186,7 +186,7 @@ List of markets that can be traded at Upbit.
 | GET    | /deposits             | Unsupported | At least 0.12.0             |
 | GET    | /market/all           | Supported   | 0.7.0+                      |
 | GET    | /candles/minutes/unit | Supported   | 0.6.0+                      |
-| GET    | /candles/days         | Unsupported | Will be supported at 0.9.0  |
+| GET    | /candles/days         | Unsupported | 0.9.0+                      |
 | GET    | /candles/weeks        | Unsupported | Will be supported at 0.10.0  |
 | GET    | /candles/months       | Unsupported | Will be supported at 0.11.0 |
 | GET    | /trades/ticks         | Supported   | 0.5.0+                      |
