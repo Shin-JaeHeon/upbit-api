@@ -147,7 +147,15 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | 名     | タイプ   | 説明      |
 |-------------------|--------|-----------------------------------------------------------|
 | unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
+#### DayCandle class
+`DayCandle` extends `Candle`
 
+| Name                | Type   | Description                           |
+|---------------------|--------|---------------------------------------|
+| prevClosingPrice    | number | the closing price of the previous day |
+| convertedTradePrice | number | a price converted into denominations  |
+| changePrice         | number | value of change amount                |
+| changeRate          | number | value of change rate                  |
 ## allMarket()
 List of markets that can be traded at Upbit.
 パラメータはありせん。

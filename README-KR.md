@@ -121,7 +121,7 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 ## candlesMinutes(market, unit?, count?, to?)
 `Candle` 오브젝트 배열을 반환합니다.
 
-| Parameter      | Type                       | Description                         |
+| 매개변수      | 타입                       | 설명                             |
 |----------------|--------------------------- |-------------------------------------|
 | market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
 | unit           | number                     |  1, 3, 5, 15, 10, 30, 60, 240       |
@@ -129,7 +129,7 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | to             | string                     | yyyy-MM-dd'T'HH:mm:ssXXX            |
 
 ### Candle class
-| Name         | Type   | Description                                               |
+| 이름         | 타입   | 설명                                                   |
 |-------------------|--------|-----------------------------------------------------------|
 | market            | string | ex) KRW, BTC, USDT ...                                    |
 | coin              | string | ex) BTC, ETH, XRP ...                                     |
@@ -147,10 +147,18 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 #### MinutesCandle class
 `MinutesCandle` extends `Candle`
 
-| Name         | Type   | Description                                                    |
+| 이름         | 타입   | 설명                                                        |
 |-------------------|--------|-----------------------------------------------------------|
 | unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
+#### DayCandle class
+`DayCandle` extends `Candle`
 
+| 이름                | 타입   | 설명                               |
+|---------------------|--------|---------------------------------------|
+| prevClosingPrice    | number | 전일 종가(UTC 0시 기준) |
+| convertedTradePrice | number | 종가 환산 화폐 단위로 환산된 가격(요청에 convertingPriceUnit 파라미터 없을 시 해당 필드 undefined)  |
+| changePrice         | number | 전일 종가 대비 변화 금액                |
+| changeRate          | number | 전일 종가 대비 변화량                  |
 ## allMarket()
 업비트에서 거래 가능한 마켓 목록
 
