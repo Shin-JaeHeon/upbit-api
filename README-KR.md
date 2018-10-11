@@ -13,9 +13,6 @@ upbit-api는 업비트의 Open API를 좀 더 쉽게 사용할 수 있도록 만
 
 Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 
-> ### 경고, v0.2.0과 호환되지 않습니다
-> autoUpdate는 autoMarketUpdate으로 이동하였습니다.
-
 ## ticker(market)
 `Market` 오브젝트(KRW-BTC 같은 것을 일컫습니다.) 배열을 생성합니다.
 
@@ -145,8 +142,14 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | low               | number | Lowest price                                              |
 | accTradePrice     | number | Candle's accTradePrice                                    |
 | accTradeVolume    | number | Candle's cumulative transaction amount                    |
-| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 | lastUpdate        | `Date` | The time when this object updated                         |
+
+#### MinutesCandle class
+`MinutesCandle` extends `Candle`
+
+| Name         | Type   | Description                                                    |
+|-------------------|--------|-----------------------------------------------------------|
+| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 
 ## allMarket()
 업비트에서 거래 가능한 마켓 목록

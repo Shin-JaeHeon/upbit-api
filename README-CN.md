@@ -142,8 +142,14 @@ Create `Candle` object arrays.
 | low               | number | Lowest price                                              |
 | accTradePrice     | number | Candle's accTradePrice                                    |
 | accTradeVolume    | number | Candle's cumulative transaction amount                    |
-| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 | lastUpdate        | `Date` | The time when this object updated                         |
+
+#### MinutesCandle class
+`MinutesCandle` extends `Candle`
+
+| 名                 | 类型    | 说明 |
+|-------------------|--------|-----------------------------------------------------------|
+| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 
 ## allMarket()
 List of markets that can be traded at Upbit.

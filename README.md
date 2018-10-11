@@ -12,8 +12,6 @@ This api will support the Restful API and Websocket API.
 
 
 It was created with Typescript and compiled into es2017.
-> ### Warning, incompatible with v0.2.0.
-> autoUpdate has been moved to autoMarketUpdate.
 
 ## ticker(market)
 Create new `Market` object arrays.
@@ -145,8 +143,13 @@ Create `Candle` object arrays.
 | low               | number | Lowest price                                              |
 | accTradePrice     | number | Candle's accTradePrice                                    |
 | accTradeVolume    | number | Candle's cumulative transaction amount                    |
-| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 | lastUpdate        | `Date` | The time when this object updated                         |
+#### MinutesCandle class
+`MinutesCandle` extends `Candle`
+
+| Name         | Type   | Description                                                    |
+|-------------------|--------|-----------------------------------------------------------|
+| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
 
 ## allMarket()
 List of markets that can be traded at Upbit.
