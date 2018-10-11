@@ -4,7 +4,8 @@ import Order from "./container/Order";
 import Trade from "./container/Trade";
 import {httpify} from "caseless";
 import Candle from "./container/Candle";
-import MinutesCandle from "./container/MinutesCandle";
+import MinutesCandle from "./container/candles/MinutesCandle";
+import DayCandle from "./container/candles/DayCandle";
 
 const request = require("request");
 
@@ -186,6 +187,7 @@ function setCandle(v, candle: Candle, type = 0): Candle {
   candle.candleDateTimeKST = new Date(`${v['candle_date_time_kst']}+0900`);
   candle.timestamp = v['timestamp'];
   if (type === 0) setMinutesCandle(v, <MinutesCandle> candle);
+  if (type === 1) setDayCandle(v, <DayCandle> candle);
   return candle;
 }
 
@@ -194,14 +196,22 @@ function setMinutesCandle(v, candle: MinutesCandle): MinutesCandle {
   return candle;
 }
 
+function setDayCandle(v, candle: DayCandle): DayCandle {
+  candle.changePrice = v.change_price;
+  candle.changeRate = v.change_rate;
+  candle.convertedTradePrice = v.converted_trade_price;
+  candle.prevClosingPrice = v.prev_closing_price;
+  return candle;
+}
+
 /**
- * get candles
+ * get minutes candles
  * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
  * @param unit 1, 3, 5, 15, 10, 30, 60, 240
  * @param count count of candles
  * @param to yyyy-MM-dd'T'HH:mm:ssXXX
  */
-function candlesMinutes(market: string | Array<string>, unit: number, count?: number, to?: string): Promise<Array<Candle>> {
+function candlesMinutes(market: string | Array<string>, unit: number, count?: number, to?: string): Promise<Array<MinutesCandle>> {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
@@ -222,6 +232,36 @@ function candlesMinutes(market: string | Array<string>, unit: number, count?: nu
   });
 }
 
+/**
+ * get days candles
+ * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
+ * @param count count of candles
+ * @param to yyyy-MM-dd'T'HH:mm:ssXXX
+ * @param convertingPriceUnit default : KRW
+ */
+function candlesDay(market: string | Array<string>, count?: number, to?: string, convertingPriceUnit?: string): Promise<Array<DayCandle>> {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: 'GET',
+      url: `https://api.upbit.com/v1/candles/days`,
+      qs: {
+        market: market.toString(),
+      }
+    };
+    // @ts-ignore
+    if (count) options.qs.count = count;
+    // @ts-ignore
+    if (to) options.qs.to = to;
+    // @ts-ignore
+    if (convertingPriceUnit) options.qs.convertingPriceUnit = convertingPriceUnit;
+    request(options, (error, response, body) => {
+      if (error) reject(error);
+      else resolve(JSON.parse(body.toString()).map(v =>
+        setCandle(v, new Candle(v['market'].split('-')[0], v['market'].split('-')[1]), 1)));
+    });
+  });
+}
+
 function allMarket() {
   return new Promise((resolve, reject) => {
     const options = {
@@ -235,4 +275,4 @@ function allMarket() {
   });
 }
 
-export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes, allMarket}
+export default {ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes, candlesDay, allMarket}

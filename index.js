@@ -187,14 +187,23 @@ function setCandle(v, candle, type = 0) {
     candle.timestamp = v['timestamp'];
     if (type === 0)
         setMinutesCandle(v, candle);
+    if (type === 1)
+        setDayCandle(v, candle);
     return candle;
 }
 function setMinutesCandle(v, candle) {
     candle.unit = v.unit;
     return candle;
 }
+function setDayCandle(v, candle) {
+    candle.changePrice = v.change_price;
+    candle.changeRate = v.change_rate;
+    candle.convertedTradePrice = v.converted_trade_price;
+    candle.prevClosingPrice = v.prev_closing_price;
+    return candle;
+}
 /**
- * get candles
+ * get minutes candles
  * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
  * @param unit 1, 3, 5, 15, 10, 30, 60, 240
  * @param count count of candles
@@ -223,6 +232,39 @@ function candlesMinutes(market, unit, count, to) {
         });
     });
 }
+/**
+ * get days candles
+ * @param market 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP']
+ * @param count count of candles
+ * @param to yyyy-MM-dd'T'HH:mm:ssXXX
+ * @param convertingPriceUnit default : KRW
+ */
+function candlesDay(market, count, to, convertingPriceUnit) {
+    return new Promise((resolve, reject) => {
+        const options = {
+            method: 'GET',
+            url: `https://api.upbit.com/v1/candles/days`,
+            qs: {
+                market: market.toString(),
+            }
+        };
+        // @ts-ignore
+        if (count)
+            options.qs.count = count;
+        // @ts-ignore
+        if (to)
+            options.qs.to = to;
+        // @ts-ignore
+        if (convertingPriceUnit)
+            options.qs.convertingPriceUnit = convertingPriceUnit;
+        request(options, (error, response, body) => {
+            if (error)
+                reject(error);
+            else
+                resolve(JSON.parse(body.toString()).map(v => setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 1)));
+        });
+    });
+}
 function allMarket() {
     return new Promise((resolve, reject) => {
         const options = {
@@ -237,4 +279,4 @@ function allMarket() {
         });
     });
 }
-exports.default = { ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes, allMarket };
+exports.default = { ticker, autoMarketUpdate, orderBook, autoOrderBookUpdate, ticks, candlesMinutes, candlesDay, allMarket };

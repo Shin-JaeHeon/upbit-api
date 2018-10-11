@@ -18,5 +18,8 @@ upbit.ticks('KRW-XRP').then(tradeList => {
 upbit.candlesMinutes('KRW-XRP', 1).then(tradeList => {
   tradeList.forEach(v => console.log(v));
 }).catch(err => console.log(err));
+upbit.candlesDay('KRW-XRP', 1).then(tradeList => {
+  tradeList.forEach(v => console.log(v));
+}).catch(err => console.log(err));
 
 upbit.allMarket().then(marketList => console.log(marketList)).catch(err => console.error(err));

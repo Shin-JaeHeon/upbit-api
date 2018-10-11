@@ -1,4 +1,4 @@
-import Candle from './Candle';
+import Candle from '../Candle';
 
 export default class MinutesCandle extends Candle {
 
