@@ -12,7 +12,31 @@ upbit-api는 업비트의 Open API를 좀 더 쉽게 사용할 수 있도록 만
 타입스크립트로 작성되어 있으며, es2017로 컴파일 되어있습니다.
 
 Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
+## 커버리지 테이블
+**§** 심볼은 `autoMarketUpdate` 또는 `autoOrderBookUpdate`가 있습니다.
 
+| 메소드 | Upbit                 | upbit-api      | 지원 버전       |
+|--------|-----------------------|----------------|-----------------|
+| GET    | /ticker               | ticker **§**   | 0.0.1 이상      |
+| GET    | /orderbook            | orderBook **§**| 0.2.0 이상      |
+| GET    | /trades/ticks         | ticks          | 0.5.0 이상      |
+| GET    | /candles/minutes/unit | candlesMinutes | 0.6.0 이상      |
+| GET    | /market/all           | allMarket      | 0.7.0 이상      |
+| GET    | /candles/days         | candlesDay     | 0.9.0 이상      |
+| GET    | /candles/weeks        | candlesWeek    | 0.10.0 이상     |
+| GET    | /candles/months       | candlesMonth   | 0.10.0 이상     |
+| GET    | /accounts             | 미지원         | 적어도 0.11.0   |
+| GET    | /orders/chance        | 미지원         | 적어도 0.11.0   |
+| GET    | /order                | 미지원         | 적어도 0.11.0   |
+| GET    | /orders               | 미지원         | 적어도 0.11.0   |
+| POST   | /orders               | 미지원         | 적어도 0.11.0   |
+| DELETE | /order                | 미지원         | 적어도 0.11.0   |
+| GET    | /withdraws            | 미지원         | 적어도 0.11.0   |
+| GET    | /withdraw             | 미지원         | 적어도 0.11.0   |
+| GET    | /withdraws/chance     | 미지원         | 적어도 0.11.0   |
+| POST   | /withdraws/coin       | 미지원         | 적어도 0.11.0   |
+| POST   | /withdraws/krw        | 미지원         | 적어도 0.11.0   |
+| GET    | /deposits             | 미지원         | 적어도 0.11.0   |
 ## ticker(market)
 `Market` 오브젝트(KRW-BTC 같은 것을 일컫습니다.) 배열을 생성합니다.
 
@@ -124,32 +148,31 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | 매개변수      | 타입                       | 설명                             |
 |----------------|--------------------------- |-------------------------------------|
 | market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
-| unit           | number                     |  1, 3, 5, 15, 10, 30, 60, 240       |
-| count          | number                     | count                               |
+| unit           | number                     | 1, 3, 5, 15, 10, 30, 60, 240       |
+| count          | number                     | 갯수                              |
 | to             | string                     | yyyy-MM-dd'T'HH:mm:ssXXX            |
 
 ### Candle class
-| 이름         | 타입   | 설명                                                   |
-|-------------------|--------|-----------------------------------------------------------|
-| market            | string | ex) KRW, BTC, USDT ...                                    |
-| coin              | string | ex) BTC, ETH, XRP ...                                     |
-| marketCode        | string | ex) KRW-BTC, KRW-XRP ...                                  |
-| timestamp         | number | The time at which the last tick was stored in the candle. |
-| candleDateTimeUTC | `Date` | Standard time of the candle (UTC basis)                   |
-| candleDateTimeKST | `Date` | Standard time of the candle (KST basis)                   |
-| open              | number | Market value                                              |
-| high              | number | Highest price                                             |
-| low               | number | Lowest price                                              |
-| accTradePrice     | number | Candle's accTradePrice                                    |
-| accTradeVolume    | number | Candle's cumulative transaction amount                    |
-| lastUpdate        | `Date` | The time when this object updated                         |
+| 이름              | 타입   | 설명                      |
+|-------------------|--------|---------------------------|
+| market            | string | ex) KRW, BTC, USDT ...    |
+| coin              | string | ex) BTC, ETH, XRP ...     |
+| marketCode        | string | ex) KRW-BTC, KRW-XRP ...  |
+| timestamp         | number | 마지막 틱이 저장된 시각   |
+| candleDateTimeUTC | `Date` | 캔들 기준 시각(UTC 기준)  |
+| candleDateTimeKST | `Date` | 캔들 기준 시각(KST 기준)  |
+| open              | number | 시가                      |
+| high              | number | 고가                      |
+| low               | number | 저가                      |
+| accTradePrice     | number | 누적 거래대금             |
+| accTradeVolume    | number | 누적 거래대금 수량        |
+| lastUpdate        | `Date` | 이 객체가 업데이트된 시간 |
 
 #### MinutesCandle class
 `MinutesCandle` extends `Candle`
-
-| 이름         | 타입   | 설명                                                        |
-|-------------------|--------|-----------------------------------------------------------|
-| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
+| 이름 | 타입   | 설명                                        |
+|------|--------|---------------------------------------------|
+| unit | number | 분, 가능한 분: 1, 3, 5, 15, 10, 30, 60, 240 |
 #### DayCandle class
 `DayCandle` extends `Candle`
 
@@ -159,6 +182,12 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | convertedTradePrice | number | 종가 환산 화폐 단위로 환산된 가격(요청에 convertingPriceUnit 파라미터 없을 시 해당 필드 undefined)  |
 | changePrice         | number | 전일 종가 대비 변화 금액                |
 | changeRate          | number | 전일 종가 대비 변화량                  |
+#### WeekMonthCandle class
+`WeekMonthCandle` extends `Candle`
+
+| Name             | Type   | Description            |
+|------------------|--------|------------------------|
+| firstDayOfPeriod | number | 캔들 기간의 가장 첫 날 |
 ## allMarket()
 업비트에서 거래 가능한 마켓 목록
 

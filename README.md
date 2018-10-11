@@ -185,6 +185,12 @@ Create `Candle` object arrays.
 | convertedTradePrice | number | a price converted into denominations  |
 | changePrice         | number | value of change amount                |
 | changeRate          | number | value of change rate                  |
+#### WeekMonthCandle class
+`WeekMonthCandle` extends `Candle`
+
+| Name                | Type   | Description                           |
+|---------------------|--------|---------------------------------------|
+| firstDayOfPeriod    | number | first day of period                   |
 ## allMarket()
 List of markets that can be traded at Upbit.
 

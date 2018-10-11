@@ -63,7 +63,7 @@ Restful APIとWebSocket APIを支援するのが目標です。
 |----------------|--------------------------- |-------------------------------------|
 | market         | string または Array\<string\>  | 'KRW-BTC' または ['KRW-BTC', 'KRW-XRP'] |
 
-### OrderBook classクラス
+### OrderBook クラス
 | 名         | タイプ           | 説明                             |
 |------------|------------------|----------------------------------|
 | market     | string           | ex) KRW, BTC, USDT ...           |
@@ -76,10 +76,10 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | totalBid   | number           | total bid                        |
 
 ### Order クラス
-| 名     | タイプ   | 説明      |
-|----------------|------- |-------------|
-| price       | number | 価格|
-| size        | number | 注文量 |
+| 名    | タイプ | 説明   |
+|-------|--------|--------|
+| price | number | 価格   |
+| size  | number | 注文量 |
 
 ## autoOrderBookUpdate(orderBook, time , errorHandler, callback?)
 `OrderBook`のオブジェクトを一定時間ごとにアップデートします。
@@ -101,7 +101,7 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | to             | string                     | HHmmss or HH:mm:ss                  |
 | cursor         | number                     | sequential_id                       |
 
-### Trade class
+### Trade クラス
 | 名     | タイプ   | 説明      |
 |--------------------|-------  |-------------|
 | market             | string  | ex) KRW, BTC, USDT ... |
@@ -126,8 +126,8 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | count          | number                     | count                               |
 | to             | string                     | yyyy-MM-dd'T'HH:mm:ssXXX            |
 
-### Candle class
-| 名     | タイプ   | 説明      |
+### Candle クラス
+| 名                | タイプ | 説明                                                      |
 |-------------------|--------|-----------------------------------------------------------|
 | market            | string | ex) KRW, BTC, USDT ...                                    |
 | coin              | string | ex) BTC, ETH, XRP ...                                     |
@@ -141,29 +141,35 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | accTradePrice     | number | Candle's accTradePrice                                    |
 | accTradeVolume    | number | Candle's cumulative transaction amount                    |
 | lastUpdate        | `Date` | The time when this object updated                         |
-#### MinutesCandle class
+#### MinutesCandle クラス
 `MinutesCandle` extends `Candle`
 
-| 名     | タイプ   | 説明      |
-|-------------------|--------|-----------------------------------------------------------|
-| unit              | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240    |
-#### DayCandle class
+| 名   | タイプ | 説明                                                   |
+|------|--------|--------------------------------------------------------|
+| unit | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240 |
+#### DayCandle クラス
 `DayCandle` extends `Candle`
 
-| Name                | Type   | Description                           |
+| 名                  | タイプ | 説明                                  |
 |---------------------|--------|---------------------------------------|
 | prevClosingPrice    | number | the closing price of the previous day |
 | convertedTradePrice | number | a price converted into denominations  |
 | changePrice         | number | value of change amount                |
 | changeRate          | number | value of change rate                  |
-## allMarket()
-List of markets that can be traded at Upbit.
-パラメータはありせん。
+#### WeekMonthCandle クラス
+`WeekMonthCandle` extends `Candle`
 
-| 名     | タイプ   | 説明      |
-|--------------|--------|---------------------------------------------------|
-| market       | string | Market information provided by Upbit, ex) BTC-XRP |
-| korean_name  | string | Korean name ex) 비트코인                          |
-| english_name | string | English name ex) Bitcoin                          |
+| 名               | タイプ | 説明   |
+|------------------|--------|--------|
+| firstDayOfPeriod | number | 期首日 |
+## allMarket()
+Upbitで取引できるマーケットのリスト.
+
+パラメータはありせん。
+| 名           | タイプ | 説明                                 |
+|--------------|--------|--------------------------------------|
+| market       | string | Upbitのマーケットの情報, ex) BTC-XRP |
+| korean_name  | string | 韓国の名 ex) 비트코인                |
+| english_name | string | 英語の名 ex) Bitcoin                 |
 
 翻訳に間違いがあれば、PRお願いします。

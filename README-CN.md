@@ -121,7 +121,7 @@ upbit-api是node.js的一个库,它使Upbit的Open API更易于使用。
 ## candlesMinutes(market, unit?, count?, to?)
 Create `Candle` object arrays.
 
-| Parameter      | Type                       | Description                         |
+| 参数            | 类型                       | 说明                                |
 |----------------|--------------------------- |-------------------------------------|
 | market         | string or Array\<string\>  | 'KRW-BTC' or ['KRW-BTC', 'KRW-XRP'] |
 | unit           | number                     |  1, 3, 5, 15, 10, 30, 60, 240       |
@@ -153,12 +153,18 @@ Create `Candle` object arrays.
 #### DayCandle class
 `DayCandle` extends `Candle`
 
-| Name                | Type   | Description                           |
+| 名                  | 类型   | 说明           |
+|---------------------|--------|----------------|
+| prevClosingPrice    | number | 前一日收盘价   |
+| convertedTradePrice | number | 换算成币的价格 |
+| changePrice         | number | 变化额         |
+| changeRate          | number | 变化率         |
+#### WeekMonthCandle class
+`WeekMonthCandle` extends `Candle`
+
+| 名                | 类型   | 说明                           |
 |---------------------|--------|---------------------------------------|
-| prevClosingPrice    | number | the closing price of the previous day |
-| convertedTradePrice | number | a price converted into denominations  |
-| changePrice         | number | value of change amount                |
-| changeRate          | number | value of change rate                  |
+| firstDayOfPeriod    | number | first day of period                   |
 ## allMarket()
 List of markets that can be traded at Upbit.
 没有参数。
