@@ -3,7 +3,15 @@
   "version": "0.10.2",
   "description": "This is an API that makes Upbit OpenAPI easy to use.",
   "main": "index.js",
-  "keywords":["backend","api","upbit","cryptocurrency","exchange","frontend","library"],
+  "keywords": [
+    "backend",
+    "api",
+    "upbit",
+    "cryptocurrency",
+    "exchange",
+    "frontend",
+    "library"
+  ],
   "author": {
     "name": "Shin-JaeHeon",
     "email": "heoni0504@gmail.com",
