@@ -8,36 +8,41 @@
 [![npm](https://img.shields.io/badge/Readme-汉语-orange.svg?style=flat-square)](https://github.com/Shin-JaeHeon/upbit-api/blob/master/README-CN.md)
 
 upbit-api is an API that makes Upbit OpenAPI easy to use.
-This api will support the Restful API and Websocket API.
 
+This api will support the Restful API and Websocket API.
 
 It was created with Typescript and compiled into es2017.
 ## Coverage Table
 The **§** symbol includes auto-update:
 `autoMarketUpdate` or `autoOrderBookUpdate`
 
-| Method | Upbit                 | upbit-api      | version         |
-|--------|-----------------------|----------------|-----------------|
-| GET    | /ticker               | ticker **§**   | 0.0.1+          |
-| GET    | /orderbook            | orderBook **§**| 0.2.0+          |
-| GET    | /trades/ticks         | ticks          | 0.5.0+          |
-| GET    | /candles/minutes/unit | candlesMinutes | 0.6.0+          |
-| GET    | /market/all           | allMarket      | 0.7.0+          |
-| GET    | /candles/days         | candlesDay     | 0.9.0+          |
-| GET    | /candles/weeks        | candlesWeek    | 0.10.0+         |
-| GET    | /candles/months       | candlesMonth   | 0.10.0+         |
-| GET    | /accounts             | Unsupported    | At least 0.11.0 |
-| GET    | /orders/chance        | Unsupported    | At least 0.11.0 |
-| GET    | /order                | Unsupported    | At least 0.11.0 |
-| GET    | /orders               | Unsupported    | At least 0.11.0 |
-| POST   | /orders               | Unsupported    | At least 0.11.0 |
-| DELETE | /order                | Unsupported    | At least 0.11.0 |
-| GET    | /withdraws            | Unsupported    | At least 0.11.0 |
-| GET    | /withdraw             | Unsupported    | At least 0.11.0 |
-| GET    | /withdraws/chance     | Unsupported    | At least 0.11.0 |
-| POST   | /withdraws/coin       | Unsupported    | At least 0.11.0 |
-| POST   | /withdraws/krw        | Unsupported    | At least 0.11.0 |
-| GET    | /deposits             | Unsupported    | At least 0.11.0 |
+WS is WebSocket.
+
+| Method | Upbit                 | upbit-api       | version         |
+|--------|-----------------------|-----------------|-----------------|
+| GET    | /ticker               | ticker **§**    | 0.0.1+          |
+| GET    | /orderbook            | orderBook **§** | 0.2.0+          |
+| GET    | /trades/ticks         | ticks           | 0.5.0+          |
+| GET    | /candles/minutes/unit | candlesMinutes  | 0.6.0+          |
+| GET    | /market/all           | allMarket       | 0.7.0+          |
+| GET    | /candles/days         | candlesDay      | 0.9.0+          |
+| GET    | /candles/weeks        | candlesWeek     | 0.10.0+         |
+| GET    | /candles/months       | candlesMonth    | 0.10.0+         |
+| GET    | /accounts             | Unsupported     | At least 0.11.0 |
+| GET    | /orders/chance        | Unsupported     | At least 0.11.0 |
+| GET    | /order                | Unsupported     | At least 0.11.0 |
+| GET    | /orders               | Unsupported     | At least 0.11.0 |
+| POST   | /orders               | Unsupported     | At least 0.11.0 |
+| DELETE | /order                | Unsupported     | At least 0.11.0 |
+| GET    | /withdraws            | Unsupported     | At least 0.11.0 |
+| GET    | /withdraw             | Unsupported     | At least 0.11.0 |
+| GET    | /withdraws/chance     | Unsupported     | At least 0.11.0 |
+| POST   | /withdraws/coin       | Unsupported     | At least 0.11.0 |
+| POST   | /withdraws/krw        | Unsupported     | At least 0.11.0 |
+| GET    | /deposits             | Unsupported     | At least 0.11.0 |
+| WS     | ticker                | Unsupported     | At least 0.11.0 |
+| WS     | trade                 | Unsupported     | At least 0.11.0 |
+| WS     | orderbook             | Unsupported     | At least 0.11.0 |
 
 ## ticker(market)
 Create new `Market` object arrays.

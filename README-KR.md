@@ -37,6 +37,9 @@ Restful API와 WebSocket API를 모두 지원하는 것이 목표입니다.
 | POST   | /withdraws/coin       | 미지원         | 적어도 0.11.0   |
 | POST   | /withdraws/krw        | 미지원         | 적어도 0.11.0   |
 | GET    | /deposits             | 미지원         | 적어도 0.11.0   |
+| 웹소켓 | ticker                | 미지원         | 적어도 0.11.0    |
+| 웹소켓 | trade                 | 미지원         | 적어도 0.11.0    |
+| 웹소켓 | orderbook             | 미지원         | 적어도 0.11.0    |
 ## ticker(market)
 `Market` 오브젝트(KRW-BTC 같은 것을 일컫습니다.) 배열을 생성합니다.
 
