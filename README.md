@@ -23,7 +23,7 @@ WS is WebSocket.
 | GET    | /ticker               | ticker **§**    | 0.0.1+          |
 | GET    | /orderbook            | orderBook **§** | 0.2.0+          |
 | GET    | /trades/ticks         | ticks           | 0.5.0+          |
-| GET    | /candles/minutes/unit | candlesMinutes  | 0.6.0+          |
+| GET    | /candles/minutes/unit | candlesMinutes  | 0.6.0+          |    
 | GET    | /market/all           | allMarket       | 0.7.0+          |
 | GET    | /candles/days         | candlesDay      | 0.9.0+          |
 | GET    | /candles/weeks        | candlesWeek     | 0.10.0+         |

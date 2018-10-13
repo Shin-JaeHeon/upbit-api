@@ -22,14 +22,14 @@ Restful APIとWebSocket APIを支援するのが目標です。
 ### Market class
 | 名                | タイプ | 説明                                 |
 |-------------------|--------|--------------------------------------|
-| market            | string | ex) KRW, BTC, USDT ...               |
-| coin              | string | ex) BTC, ETH, XRP ...                |
-| marketCode        | string | ex) KRW-BTC, KRW-XRP ...             |
+| market            | string | 例) KRW, BTC, USDT ...               |
+| coin              | string | 例) BTC, ETH, XRP ...                |
+| marketCode        | string | 例) KRW-BTC, KRW-XRP ...             |
 | tradeTime         | `Date` | 取引時間                             |
 | price             | number | 価格                                 |
 | open              | number | 時価                                 |
 | high              | number | 高価                                 |
-| low               | number | 低価格                               |
+| low               | number | 最低価格                             |
 | prevClose         | number | 前日終値                             |
 | change            | number | EVEN(横ばい), RISE(上昇), FALL(下落) |
 | changePrice       | number | 変化金額の絶対値                     |
@@ -43,8 +43,8 @@ Restful APIとWebSocket APIを支援するのが目標です。
 | accTradeVolume24  | number | 24時間の累積取引代金                 |
 | high52wPrice      | number | 52週の新しい高価                     |
 | high52wDate       | `Date` | 52注意新しい高価達成日               |
-| low52wPrice       | number | 52注意新しい低価格                   |
-| low52wDate    | `Date` | 52注意新しい低価格達成日             |
+| low52wPrice       | number | 52注意新しい最低価格                 |
+| low52wDate        | `Date` | 52注意新しい最低価格達成日           |
 | lastUpdate        | `Date` | このオブジェクトが更新された時刻     |
 ## autoMarketUpdate(market, time , errorHandler, callback?)
 `Market`のオブジェクトを一定時間ごとにアップデートします。
@@ -66,9 +66,9 @@ Restful APIとWebSocket APIを支援するのが目標です。
 ### OrderBook クラス
 | 名         | タイプ           | 説明                             |
 |------------|------------------|----------------------------------|
-| market     | string           | ex) KRW, BTC, USDT ...           |
-| coin       | string           | ex) BTC, ETH, XRP ...            |
-| marketCode | string           | ex) KRW-BTC, KRW-XRP ...         |
+| market     | string           | 例) KRW, BTC, USDT ...           |
+| coin       | string           | 例) BTC, ETH, XRP ...            |
+| marketCode | string           | 例) KRW-BTC, KRW-XRP ...         |
 | lastUpdate | `Date`           | このオブジェクトが更新された時刻  |
 | askList    | Array\<`Order`\> | Ask オーダーリスト               |
 | bidList    | Array\<`Order`\> | Bid オーダーリスト               |
@@ -104,9 +104,9 @@ Restful APIとWebSocket APIを支援するのが目標です。
 ### Trade クラス
 | 名     | タイプ   | 説明      |
 |--------------------|-------  |-------------|
-| market             | string  | ex) KRW, BTC, USDT ... |
-| coin               | string  | ex) BTC, ETH, XRP ... |
-| marketCode         | string  | ex) KRW-BTC, KRW-XRP ... |
+| market             | string  | 例) KRW, BTC, USDT ... |
+| coin               | string  | 例) BTC, ETH, XRP ... |
+| marketCode         | string  | 例) KRW-BTC, KRW-XRP ... |
 | lastUpdate         | `Date`  | このオブジェクトが更新された時刻|
 | tradeTime          | `Date`  | 締結時間 |
 | price              | number  | 締結の価格 |
@@ -129,33 +129,33 @@ Restful APIとWebSocket APIを支援するのが目標です。
 ### Candle クラス
 | 名                | タイプ | 説明                                                      |
 |-------------------|--------|-----------------------------------------------------------|
-| market            | string | ex) KRW, BTC, USDT ...                                    |
-| coin              | string | ex) BTC, ETH, XRP ...                                     |
-| marketCode        | string | ex) KRW-BTC, KRW-XRP ...                                  |
-| timestamp         | number | The time at which the last tick was stored in the candle. |
+| market            | string | 例) KRW, BTC, USDT ...                                    |
+| coin              | string | 例) BTC, ETH, XRP ...                                     |
+| marketCode        | string | 例) KRW-BTC, KRW-XRP ...                                  |
+| timestamp         | number | 最後のtickがキャンドルに保存された時間                      |
 | candleDateTimeUTC | `Date` | Standard time of the candle (UTC basis)                   |
 | candleDateTimeKST | `Date` | Standard time of the candle (KST basis)                   |
 | open              | number | Market value                                              |
-| high              | number | Highest price                                             |
-| low               | number | Lowest price                                              |
+| high              | number | 高価                                                      |
+| low               | number | 最低価格                                                   |
 | accTradePrice     | number | Candle's accTradePrice                                    |
 | accTradeVolume    | number | Candle's cumulative transaction amount                    |
-| lastUpdate        | `Date` | The time when this object updated                         |
+| lastUpdate        | `Date` | このオブジェクトが更新された時刻ed                         |
 #### MinutesCandle クラス
 `MinutesCandle` extends `Candle`
 
 | 名   | タイプ | 説明                                                   |
 |------|--------|--------------------------------------------------------|
-| unit | number | minutes. Possible values: 1, 3, 5, 15, 10, 30, 60, 240 |
+| unit | number |分です、 使用可能な値: 1, 3, 5, 15, 10, 30, 60, 240 |
 #### DayCandle クラス
 `DayCandle` extends `Candle`
 
 | 名                  | タイプ | 説明                                  |
 |---------------------|--------|---------------------------------------|
-| prevClosingPrice    | number | the closing price of the previous day |
-| convertedTradePrice | number | a price converted into denominations  |
-| changePrice         | number | value of change amount                |
-| changeRate          | number | value of change rate                  |
+| prevClosingPrice    | number | 前日終値 |
+| convertedTradePrice | number | 指定した貨幣に換算した価格             |
+| changePrice         | number | 変化金額                              |
+| changeRate          | number | 変化率                                |
 #### WeekMonthCandle クラス
 `WeekMonthCandle` extends `Candle`
 
@@ -168,8 +168,8 @@ Upbitで取引できるマーケットのリスト.
 パラメータはありせん。
 | 名           | タイプ | 説明                                 |
 |--------------|--------|--------------------------------------|
-| market       | string | Upbitのマーケットの情報, ex) BTC-XRP |
-| korean_name  | string | 韓国の名 ex) 비트코인                |
-| english_name | string | 英語の名 ex) Bitcoin                 |
+| market       | string | Upbitのマーケットの情報, 例) BTC-XRP |
+| korean_name  | string | 韓国語名 例) 비트코인                |
+| english_name | string | 英語名 例) Bitcoin                 |
 
 翻訳に間違いがあれば、PRお願いします。
