@@ -9,9 +9,14 @@
     "upbit",
     "cryptocurrency",
     "exchange",
-    "frontend",
+    "업비트",
+    "코인",
+    "암호화폐",
     "library"
   ],
+  "scripts": {
+    "test": "node test/test.js"
+  },
   "author": {
     "name": "Shin-JaeHeon",
     "email": "shinjaeheon520614@gmail.com",
@@ -27,8 +32,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "request": "2.88.2",
-    "ws": "6.2.1"
+    "request": "2.88.2"
   },
   "devDependencies": {
     "@types/node": "^10.5.1"

@@ -1,144 +1,241 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class default_1 {
-    constructor(market, coin) {
+var default_1 = /** @class */ (function () {
+    function default_1(market, coin) {
         this._market = market;
         this._coin = coin;
     }
-    get marketCode() {
-        return `${this._market}-${this._coin}`;
-    }
-    get coin() {
-        return this._coin;
-    }
-    get market() {
-        return this._market;
-    }
-    get tradeTime() {
-        return this._tradeTime;
-    }
-    set tradeTime(value) {
-        this._tradeTime = value;
-    }
-    get price() {
-        return this._price;
-    }
-    set price(value) {
-        this._price = value;
-    }
-    get open() {
-        return this._open;
-    }
-    set open(value) {
-        this._open = value;
-    }
-    get high() {
-        return this._high;
-    }
-    set high(value) {
-        this._high = value;
-    }
-    get low() {
-        return this._low;
-    }
-    set low(value) {
-        this._low = value;
-    }
-    get prevClose() {
-        return this._prevClose;
-    }
-    set prevClose(value) {
-        this._prevClose = value;
-    }
-    get change() {
-        return this._change;
-    }
-    set change(value) {
-        this._change = value;
-    }
-    get changePrice() {
-        return this._changePrice;
-    }
-    set changePrice(value) {
-        this._changePrice = value;
-    }
-    get changeRate() {
-        return this._changeRate;
-    }
-    set changeRate(value) {
-        this._changeRate = value;
-    }
-    get signedChangePrice() {
-        return this._signedChangePrice;
-    }
-    set signedChangePrice(value) {
-        this._signedChangePrice = value;
-    }
-    get signedChangeRate() {
-        return this._signedChangeRate;
-    }
-    set signedChangeRate(value) {
-        this._signedChangeRate = value;
-    }
-    get tradeVolume() {
-        return this._tradeVolume;
-    }
-    set tradeVolume(value) {
-        this._tradeVolume = value;
-    }
-    get accTradePrice() {
-        return this._accTradePrice;
-    }
-    set accTradePrice(value) {
-        this._accTradePrice = value;
-    }
-    get accTradePrice24() {
-        return this._accTradePrice24;
-    }
-    set accTradePrice24(value) {
-        this._accTradePrice24 = value;
-    }
-    get accTradeVolume() {
-        return this._accTradeVolume;
-    }
-    set accTradeVolume(value) {
-        this._accTradeVolume = value;
-    }
-    get accTradeVolume24() {
-        return this._accTradeVolume24;
-    }
-    set accTradeVolume24(value) {
-        this._accTradeVolume24 = value;
-    }
-    get high52wPrice() {
-        return this._high52wPrice;
-    }
-    set high52wPrice(value) {
-        this._high52wPrice = value;
-    }
-    get high52wDate() {
-        return this._high52wDate;
-    }
-    set high52wDate(value) {
-        this._high52wDate = value;
-    }
-    get low52wPrice() {
-        return this._low52wPrice;
-    }
-    set low52wPrice(value) {
-        this._low52wPrice = value;
-    }
-    get low52wDate() {
-        return this._low52wDate;
-    }
-    set low52wDate(value) {
-        this._low52wDate = value;
-    }
-    get lastUpdate() {
-        return this._lastUpdate;
-    }
-    set lastUpdate(value) {
-        this._lastUpdate = value;
-    }
-}
+    Object.defineProperty(default_1.prototype, "marketCode", {
+        get: function () {
+            return this._market + "-" + this._coin;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "coin", {
+        get: function () {
+            return this._coin;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "market", {
+        get: function () {
+            return this._market;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "tradeTime", {
+        get: function () {
+            return this._tradeTime;
+        },
+        set: function (value) {
+            this._tradeTime = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "price", {
+        get: function () {
+            return this._price;
+        },
+        set: function (value) {
+            this._price = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "open", {
+        get: function () {
+            return this._open;
+        },
+        set: function (value) {
+            this._open = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "high", {
+        get: function () {
+            return this._high;
+        },
+        set: function (value) {
+            this._high = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "low", {
+        get: function () {
+            return this._low;
+        },
+        set: function (value) {
+            this._low = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "prevClose", {
+        get: function () {
+            return this._prevClose;
+        },
+        set: function (value) {
+            this._prevClose = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "change", {
+        get: function () {
+            return this._change;
+        },
+        set: function (value) {
+            this._change = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "changePrice", {
+        get: function () {
+            return this._changePrice;
+        },
+        set: function (value) {
+            this._changePrice = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "changeRate", {
+        get: function () {
+            return this._changeRate;
+        },
+        set: function (value) {
+            this._changeRate = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "signedChangePrice", {
+        get: function () {
+            return this._signedChangePrice;
+        },
+        set: function (value) {
+            this._signedChangePrice = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "signedChangeRate", {
+        get: function () {
+            return this._signedChangeRate;
+        },
+        set: function (value) {
+            this._signedChangeRate = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "tradeVolume", {
+        get: function () {
+            return this._tradeVolume;
+        },
+        set: function (value) {
+            this._tradeVolume = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "accTradePrice", {
+        get: function () {
+            return this._accTradePrice;
+        },
+        set: function (value) {
+            this._accTradePrice = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "accTradePrice24", {
+        get: function () {
+            return this._accTradePrice24;
+        },
+        set: function (value) {
+            this._accTradePrice24 = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "accTradeVolume", {
+        get: function () {
+            return this._accTradeVolume;
+        },
+        set: function (value) {
+            this._accTradeVolume = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "accTradeVolume24", {
+        get: function () {
+            return this._accTradeVolume24;
+        },
+        set: function (value) {
+            this._accTradeVolume24 = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "high52wPrice", {
+        get: function () {
+            return this._high52wPrice;
+        },
+        set: function (value) {
+            this._high52wPrice = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "high52wDate", {
+        get: function () {
+            return this._high52wDate;
+        },
+        set: function (value) {
+            this._high52wDate = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "low52wPrice", {
+        get: function () {
+            return this._low52wPrice;
+        },
+        set: function (value) {
+            this._low52wPrice = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "low52wDate", {
+        get: function () {
+            return this._low52wDate;
+        },
+        set: function (value) {
+            this._low52wDate = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(default_1.prototype, "lastUpdate", {
+        get: function () {
+            return this._lastUpdate;
+        },
+        set: function (value) {
+            this._lastUpdate = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return default_1;
+}());
 exports.default = default_1;

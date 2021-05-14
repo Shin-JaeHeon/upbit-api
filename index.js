@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Market_1 = require("./container/Market");
-const OrderBook_1 = require("./container/OrderBook");
-const Order_1 = require("./container/Order");
-const Trade_1 = require("./container/Trade");
-const Candle_1 = require("./container/Candle");
-const request = require("request");
+var Market_1 = require("./container/Market");
+var OrderBook_1 = require("./container/OrderBook");
+var Order_1 = require("./container/Order");
+var Trade_1 = require("./container/Trade");
+var Candle_1 = require("./container/Candle");
+var request = require("request");
 function setMarketData(market, v) {
     market.tradeTime = new Date(v['trade_timestamp']);
     market.price = v['trade_price'];
@@ -34,24 +34,24 @@ function setMarketData(market, v) {
  * @param market example: ['KRW-BTC', 'KRW-XRP']
  */
 function ticker(market) {
-    return new Promise((resolve, reject) => {
-        const options = {
+    return new Promise(function (resolve, reject) {
+        var options = {
             method: 'GET',
             url: 'https://api.upbit.com/v1/ticker',
             qs: { markets: market.toString() }
         };
-        request(options, (error, response, body) => {
+        request(options, function (error, response, body) {
             if (error)
                 reject(error);
             else {
-                const data = [];
+                var data_1 = [];
                 body = JSON.parse(body.toString());
-                body.forEach(v => {
-                    const market = new Market_1.default(v['market'].split('-')[0], v['market'].split('-')[1]);
+                body.forEach(function (v) {
+                    var market = new Market_1.default(v['market'].split('-')[0], v['market'].split('-')[1]);
                     setMarketData(market, v);
-                    data.push(market);
+                    data_1.push(market);
                 });
-                resolve(data);
+                resolve(data_1);
             }
         });
     });
@@ -64,11 +64,12 @@ function ticker(market) {
  * @param {(market) => any} callback called when updated, optional
  */
 function autoMarketUpdate(market, time, errorHandler, callback) {
-    const run = market => setInterval(() => {
-        const options = {
-            method: 'GET', url: 'https://api.upbit.com/v1/ticker', qs: { markets: `${market.market}-${market.coin}` }
+    var run = function (market) { return setInterval(function () {
+        var options = {
+            method: 'GET', url: 'https://api.upbit.com/v1/ticker',
+            qs: { markets: market.market + "-" + market.coin }
         };
-        request(options, (error, response, body) => {
+        request(options, function (error, response, body) {
             if (error)
                 errorHandler(error);
             else {
@@ -78,16 +79,16 @@ function autoMarketUpdate(market, time, errorHandler, callback) {
                     callback(market);
             }
         });
-    }, time);
+    }, time); };
     if (Array.isArray(market))
-        market.forEach(v => run(v));
+        market.forEach(function (v) { return run(v); });
     else
         run(market);
 }
 function setOrderBookData(v, orderBook) {
-    const ask = [];
-    const bid = [];
-    v['orderbook_units'].forEach(v => {
+    var ask = [];
+    var bid = [];
+    v['orderbook_units'].forEach(function (v) {
         ask.push(new Order_1.default(v['ask_price'], v['ask_size']));
         bid.push(new Order_1.default(v['bid_price'], v['bid_size']));
     });
@@ -96,12 +97,12 @@ function setOrderBookData(v, orderBook) {
     return orderBook;
 }
 function autoOrderBookUpdate(orderBook, time, errorHandler, callback) {
-    const run = orderBook => setInterval(() => {
+    var run = function (orderBook) { return setInterval(function () {
         request({
             method: 'GET',
             url: 'https://api.upbit.com/v1/orderbook',
-            qs: { markets: `${orderBook.market}-${orderBook.coin}` }
-        }, (error, response, body) => {
+            qs: { markets: orderBook.market + "-" + orderBook.coin }
+        }, function (error, response, body) {
             if (error)
                 errorHandler(error);
             body = JSON.parse(body);
@@ -109,9 +110,9 @@ function autoOrderBookUpdate(orderBook, time, errorHandler, callback) {
             if (callback)
                 callback(orderBook);
         });
-    }, time);
+    }, time); };
     if (Array.isArray(orderBook))
-        orderBook.forEach(v => run(v));
+        orderBook.forEach(function (v) { return run(v); });
     else
         run(orderBook);
 }
@@ -120,16 +121,16 @@ function autoOrderBookUpdate(orderBook, time, errorHandler, callback) {
  * @param market
  */
 function orderBook(market) {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         request({
             method: 'GET',
             url: 'https://api.upbit.com/v1/orderbook',
             qs: { markets: market.toString() }
-        }, (error, response, body) => {
+        }, function (error, response, body) {
             if (error)
                 reject(error);
             body = JSON.parse(body);
-            resolve(body.map(v => setOrderBookData(v, new OrderBook_1.default(v['market'].split('-')[0], v['market'].split('-')[1]))));
+            resolve(body.map(function (v) { return setOrderBookData(v, new OrderBook_1.default(v['market'].split('-')[0], v['market'].split('-')[1])); }));
         });
     });
 }
@@ -151,9 +152,10 @@ function setTradeData(v, trade) {
  * @param {string} to HHmmss or HH:mm:ss
  * @param {number} cursor sequential_id
  */
-function ticks(market, count = 1, to, cursor) {
-    return new Promise((resolve, reject) => {
-        const options = {
+function ticks(market, count, to, cursor) {
+    if (count === void 0) { count = 1; }
+    return new Promise(function (resolve, reject) {
+        var options = {
             method: 'GET',
             url: 'https://api.upbit.com/v1/trades/ticks',
             qs: {
@@ -167,23 +169,26 @@ function ticks(market, count = 1, to, cursor) {
         // @ts-ignore
         if (cursor)
             options.qs.cursor = curosr;
-        request(options, (error, response, body) => {
+        request(options, function (error, response, body) {
             if (error)
                 reject(error);
             else
-                resolve(JSON.parse(body.toString()).map(v => setTradeData(v, new Trade_1.default(v['market'].split('-')[0], v['market'].split('-')[1]))));
+                resolve(JSON.parse(body.toString()).map(function (v) {
+                    return setTradeData(v, new Trade_1.default(v['market'].split('-')[0], v['market'].split('-')[1]));
+                }));
         });
     });
 }
-function setCandle(v, candle, type = 0) {
+function setCandle(v, candle, type) {
+    if (type === void 0) { type = 0; }
     candle.accTradePrice = v.candle_acc_trade_volume;
     candle.accTradePrice = v.candle_acc_trade_price;
     candle.price = v['trade_price'];
     candle.high = v['high_price'];
     candle.low = v['low_price'];
     candle.open = v['opening_price'];
-    candle.candleDateTimeUTC = new Date(`${v['candle_date_time_utc']}+0000`);
-    candle.candleDateTimeKST = new Date(`${v['candle_date_time_kst']}+0900`);
+    candle.candleDateTimeUTC = new Date(v['candle_date_time_utc'] + "+0000");
+    candle.candleDateTimeKST = new Date(v['candle_date_time_kst'] + "+0900");
     candle.timestamp = v['timestamp'];
     if (type === 0)
         setMinutesCandle(v, candle);
@@ -217,10 +222,10 @@ function setDayCandle(v, candle) {
  * @param to yyyy-MM-dd'T'HH:mm:ssXXX
  */
 function candlesMinutes(market, unit, count, to) {
-    return new Promise((resolve, reject) => {
-        const options = {
+    return new Promise(function (resolve, reject) {
+        var options = {
             method: 'GET',
-            url: `https://api.upbit.com/v1/candles/minutes/${unit}`,
+            url: "https://api.upbit.com/v1/candles/minutes/" + unit,
             qs: {
                 market: market.toString(),
             }
@@ -231,11 +236,13 @@ function candlesMinutes(market, unit, count, to) {
         // @ts-ignore
         if (to)
             options.qs.to = to;
-        request(options, (error, response, body) => {
+        request(options, function (error, response, body) {
             if (error)
                 reject(error);
             else
-                resolve(JSON.parse(body.toString()).map(v => setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]))));
+                resolve(JSON.parse(body.toString()).map(function (v) {
+                    return setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]));
+                }));
         });
     });
 }
@@ -247,10 +254,10 @@ function candlesMinutes(market, unit, count, to) {
  * @param convertingPriceUnit default : KRW
  */
 function candlesDay(market, count, to, convertingPriceUnit) {
-    return new Promise((resolve, reject) => {
-        const options = {
+    return new Promise(function (resolve, reject) {
+        var options = {
             method: 'GET',
-            url: `https://api.upbit.com/v1/candles/days`,
+            url: "https://api.upbit.com/v1/candles/days",
             qs: {
                 market: market.toString(),
             }
@@ -264,11 +271,13 @@ function candlesDay(market, count, to, convertingPriceUnit) {
         // @ts-ignore
         if (convertingPriceUnit)
             options.qs.convertingPriceUnit = convertingPriceUnit;
-        request(options, (error, response, body) => {
+        request(options, function (error, response, body) {
             if (error)
                 reject(error);
             else
-                resolve(JSON.parse(body.toString()).map(v => setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 1)));
+                resolve(JSON.parse(body.toString()).map(function (v) {
+                    return setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 1);
+                }));
         });
     });
 }
@@ -279,10 +288,10 @@ function candlesDay(market, count, to, convertingPriceUnit) {
  * @param to yyyy-MM-dd'T'HH:mm:ssXXX
  */
 function candlesWeek(market, count, to) {
-    return new Promise((resolve, reject) => {
-        const options = {
+    return new Promise(function (resolve, reject) {
+        var options = {
             method: 'GET',
-            url: `https://api.upbit.com/v1/candles/weeks`,
+            url: "https://api.upbit.com/v1/candles/weeks",
             qs: {
                 market: market.toString(),
             }
@@ -293,11 +302,13 @@ function candlesWeek(market, count, to) {
         // @ts-ignore
         if (to)
             options.qs.to = to;
-        request(options, (error, response, body) => {
+        request(options, function (error, response, body) {
             if (error)
                 reject(error);
             else
-                resolve(JSON.parse(body.toString()).map(v => setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 2)));
+                resolve(JSON.parse(body.toString()).map(function (v) {
+                    return setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 2);
+                }));
         });
     });
 }
@@ -308,10 +319,10 @@ function candlesWeek(market, count, to) {
  * @param to yyyy-MM-dd'T'HH:mm:ssXXX
  */
 function candlesMonth(market, count, to) {
-    return new Promise((resolve, reject) => {
-        const options = {
+    return new Promise(function (resolve, reject) {
+        var options = {
             method: 'GET',
-            url: `https://api.upbit.com/v1/candles/months`,
+            url: "https://api.upbit.com/v1/candles/months",
             qs: {
                 market: market.toString(),
             }
@@ -322,21 +333,23 @@ function candlesMonth(market, count, to) {
         // @ts-ignore
         if (to)
             options.qs.to = to;
-        request(options, (error, response, body) => {
+        request(options, function (error, response, body) {
             if (error)
                 reject(error);
             else
-                resolve(JSON.parse(body.toString()).map(v => setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 2)));
+                resolve(JSON.parse(body.toString()).map(function (v) {
+                    return setCandle(v, new Candle_1.default(v['market'].split('-')[0], v['market'].split('-')[1]), 2);
+                }));
         });
     });
 }
 function allMarket() {
-    return new Promise((resolve, reject) => {
-        const options = {
+    return new Promise(function (resolve, reject) {
+        var options = {
             method: 'GET',
-            url: `https://api.upbit.com/v1/market/all`
+            url: "https://api.upbit.com/v1/market/all"
         };
-        request(options, (error, response, body) => {
+        request(options, function (error, response, body) {
             if (error)
                 reject(error);
             else
@@ -345,14 +358,14 @@ function allMarket() {
     });
 }
 exports.default = {
-    ticker,
-    autoMarketUpdate,
-    orderBook,
-    autoOrderBookUpdate,
-    ticks,
-    candlesMinutes,
-    candlesDay,
-    candlesWeek,
-    candlesMonth,
-    allMarket
+    ticker: ticker,
+    autoMarketUpdate: autoMarketUpdate,
+    orderBook: orderBook,
+    autoOrderBookUpdate: autoOrderBookUpdate,
+    ticks: ticks,
+    candlesMinutes: candlesMinutes,
+    candlesDay: candlesDay,
+    candlesWeek: candlesWeek,
+    candlesMonth: candlesMonth,
+    allMarket: allMarket
 };

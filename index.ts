@@ -2,7 +2,6 @@ import Market from "./container/Market";
 import OrderBook from "./container/OrderBook";
 import Order from "./container/Order";
 import Trade from "./container/Trade";
-import {httpify} from "caseless";
 import Candle from "./container/Candle";
 import MinutesCandle from "./container/candles/MinutesCandle";
 import DayCandle from "./container/candles/DayCandle";

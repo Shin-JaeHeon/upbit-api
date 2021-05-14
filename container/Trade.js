@@ -1,66 +1,111 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Trade {
-    constructor(market, coin) {
+var Trade = /** @class */ (function () {
+    function Trade(market, coin) {
         this._market = market;
         this._coin = coin;
     }
-    get coin() {
-        return this._coin;
-    }
-    get market() {
-        return this._market;
-    }
-    get marketCode() {
-        return `${this._market}-${this._coin}`;
-    }
-    get price() {
-        return this._price;
-    }
-    set price(value) {
-        this._price = value;
-    }
-    get lastUpdate() {
-        return this._lastUpdate;
-    }
-    set lastUpdate(value) {
-        this._lastUpdate = value;
-    }
-    get tradeTime() {
-        return this._tradeTime;
-    }
-    set tradeTime(value) {
-        this._tradeTime = value;
-    }
-    get volume() {
-        return this._volume;
-    }
-    set volume(value) {
-        this._volume = value;
-    }
-    get prev_closing_price() {
-        return this._prev_closing_price;
-    }
-    set prev_closing_price(value) {
-        this._prev_closing_price = value;
-    }
-    get change_price() {
-        return this._change_price;
-    }
-    set change_price(value) {
-        this._change_price = value;
-    }
-    get sequential_id() {
-        return this._sequential_id;
-    }
-    set sequential_id(value) {
-        this._sequential_id = value;
-    }
-    get isAsk() {
-        return this._isAsk;
-    }
-    set isAsk(value) {
-        this._isAsk = value;
-    }
-}
+    Object.defineProperty(Trade.prototype, "coin", {
+        get: function () {
+            return this._coin;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "market", {
+        get: function () {
+            return this._market;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "marketCode", {
+        get: function () {
+            return this._market + "-" + this._coin;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "price", {
+        get: function () {
+            return this._price;
+        },
+        set: function (value) {
+            this._price = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "lastUpdate", {
+        get: function () {
+            return this._lastUpdate;
+        },
+        set: function (value) {
+            this._lastUpdate = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "tradeTime", {
+        get: function () {
+            return this._tradeTime;
+        },
+        set: function (value) {
+            this._tradeTime = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "volume", {
+        get: function () {
+            return this._volume;
+        },
+        set: function (value) {
+            this._volume = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "prev_closing_price", {
+        get: function () {
+            return this._prev_closing_price;
+        },
+        set: function (value) {
+            this._prev_closing_price = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "change_price", {
+        get: function () {
+            return this._change_price;
+        },
+        set: function (value) {
+            this._change_price = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "sequential_id", {
+        get: function () {
+            return this._sequential_id;
+        },
+        set: function (value) {
+            this._sequential_id = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Trade.prototype, "isAsk", {
+        get: function () {
+            return this._isAsk;
+        },
+        set: function (value) {
+            this._isAsk = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Trade;
+}());
 exports.default = Trade;
